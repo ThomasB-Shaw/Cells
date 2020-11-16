@@ -4,16 +4,13 @@ import { put, takeLatest } from 'redux-saga/effects';
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchPaintings() {
   try {
-    const config = {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    };
-    const response = yield axios.get('/api/paintings', config);
-    yield put({ type: 'SET_PAINTINGS', payload: response.data });
-  } catch (error) {
-    console.log('PAINTINGS get request failed', error);
-  }
+    const paintingsResponse = yield axios.get('/api/paintings');
+    yield put({type: 'SET_PAINTINGS', payload: paintingsResponse.data})
+    } catch(err) {
+        console.log('err fetching paintings', err);
+    }
 }
+
 
 function* paintingsSaga() {
   yield takeLatest('FETCH_PAINTINGS', fetchPaintings);
