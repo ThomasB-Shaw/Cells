@@ -23,6 +23,16 @@ CREATE TABLE "painting" (
 	"size_type" varchar(105) NOT NULL
 );
 
+-- DUMMY DATA FOR PAINTINGS TABLE
+INSERT INTO "painting"("id","user_id","title","description","image_url","date","size_type")
+VALUES
+(1,E'Rainbow Road',E'Coles Best one yet',E'/images/Snapchat-1443581656.jpg',E'2019-11-23',E'12x24'),
+(1,E'Until the Quiet Comes',E'Not my best work by my friend Zach likes it!!',E'/images/Snapchat-91313157.jpg',E'2019-07-18',E'12x36'),
+(1,E'Chrome on Water',E'Coles Favorite painting',E'/images/Snapchat-1504703270.jpg',E'2019-11-23',E'12x24'),
+(1,E'Breate Deeper',E'My Favorite Painting yet!',E'/images/Snapchat-1658784163.jpg',E'2019-07-11',E'12x36'),
+(1,E'Pumpkin Hill',E'Holloween Painting 2020!',E'/images/Snapchat-1619132025.jpg',E'2020-10-31',E'12x24'),
+(1,E'Fever The Ghost',E'Kinda looks like a skull in the top right huh?',E'/images/Snapchat-2032616108.jpg',E'2019-12-28',E'18x20');
+
 
 
 CREATE TABLE "painting_component" (
