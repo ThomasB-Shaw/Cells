@@ -12,6 +12,14 @@ class LandingPage extends Component {
     heading: 'Class Component',
   };
 
+  componentDidMount = () => {
+    this.getPaintings();
+  }
+
+  getPaintings = () => {
+    this.props.dispatch({type: 'FETCH_PAINTINGS'})
+  }
+
   onLogin = (event) => {
     this.props.history.push('/login');
   };
@@ -54,6 +62,10 @@ class LandingPage extends Component {
               Nullam non fermentum mauris. Sed in enim ac turpis faucibus
               pretium in sit amet nisi.
             </p>
+
+            {this.props.store.paintings.map((painting) => {
+            return <li><img src={painting.img_url} alt={painting.title}/></li>
+            })}
           </div>
           <div className="grid-col grid-col_4">
             <RegisterForm />
