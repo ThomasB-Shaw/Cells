@@ -19,6 +19,7 @@ import AddPage from '../AddPage/AddPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import PaintingDetails from '../PaintingDetails/PaintingDetails';
 
 import './App.css';
 
@@ -51,6 +52,15 @@ class App extends Component {
               exact
               path="/home"
               component={LandingPage}
+            />
+
+            <Route
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
+              exact
+              path="/details"
+              component={PaintingDetails}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.

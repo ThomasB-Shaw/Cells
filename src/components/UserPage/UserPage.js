@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import PaintingGallery from '../PaintingGallery/PaintingGallery';
 
 class UserPage extends Component {
   componentDidMount = () => {
@@ -18,12 +19,13 @@ class UserPage extends Component {
         <h1 id="welcome">Hello There, {this.props.store.user.username}!</h1>
         <p>Your ID is: {this.props.store.user.id}</p>
         <LogOutButton className="log-in" />
-        {/* <ul>
-          {this.props.store.userAccount.map((painting) => {
-            return <li key={painting.id}><p>{painting.title}</p></li>
-          })}
-        </ul> */}
-        <p>{JSON.stringify(this.props.store.userAccount)}</p>
+        <ul>
+        {this.props.store.userAccount.map((painting) => {
+                return <li key={painting.id}>
+                  <PaintingGallery painting={painting} />
+                  </li>
+              })}
+        </ul>
       </div>
     );
   }
