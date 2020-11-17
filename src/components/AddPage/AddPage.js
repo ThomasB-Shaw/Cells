@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import './AddPage.css'
 
-class InfoPage extends React.Component {
+class AddPage extends React.Component {
   state = {
     title: '',
     description: '',
@@ -57,9 +58,11 @@ class InfoPage extends React.Component {
           </label>
         </form>
         <button>SUBMIT</button>
+        <br/>
+        <img src={this.state.img_url} alt={this.state.title}/>
       </div>
     )
   }
 }
 
-export default connect(mapStoreToProps)(InfoPage);
+export default connect(mapStoreToProps)(AddPage);

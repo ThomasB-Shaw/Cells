@@ -1,4 +1,4 @@
-const paintingsReducer = (state = {}, action) => {
+const paintingsReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_PAINTINGS':
         return action.payload;
