@@ -15,10 +15,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import AddPage from '../AddPage/AddPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import PaintingDetails from '../PaintingDetails/PaintingDetails';
 
 import './App.css';
 
@@ -53,6 +54,15 @@ class App extends Component {
               component={LandingPage}
             />
 
+            <Route
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
+              exact
+              path="/details"
+              component={PaintingDetails}
+            />
+
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -65,10 +75,10 @@ class App extends Component {
             />
 
             <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
+              // logged in shows AddPage else shows LoginPage
               exact
-              path="/info"
-              component={InfoPage}
+              path="/add"
+              component={AddPage}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will

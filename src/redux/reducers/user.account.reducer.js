@@ -1,7 +1,7 @@
 
 
 
-const userAccountReducer = (state = {}, action) => {
+const userAccountReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_ACCOUNT':
       return action.payload;
