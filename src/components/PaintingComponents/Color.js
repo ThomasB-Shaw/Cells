@@ -17,21 +17,21 @@ class Color extends React.Component {
     console.log(this.state);
 }
 
-submitClick = () => {
+addClick = () => {
   this.props.dispatch({ type:"ADD_PAINTING_COMPONENT", payload: this.state })
-  // this.props.history.push('/edit');
 }
 
 
   render() {
     return (
-      <div className='color'>
+      <div className='paintingComponent'>
         <label htmlFor='color'>
           Brand:
           <input type='text' placeholder='Brand' onChange={(event) => this.handleChange(event, 'brand')}/>
           Color:
           <input type='text' placeholder='Color' onChange={(event) => this.handleChange(event, 'color')}/>
         </label>
+        <button onClick={this.addClick}>Add</button>
       </div>
     )
   }

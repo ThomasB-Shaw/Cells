@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/paintings', paintingsRouter);
 app.use('/api/account', userAccountRouter);
-app.use('/api/component', paintingComponentRouter);
+app.use('/api/components', paintingComponentRouter);
 
 // Serve static files
 app.use(express.static('build'));
