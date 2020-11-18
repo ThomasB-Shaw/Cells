@@ -22,7 +22,7 @@ class UserPage extends Component {
         <ul>
         {this.props.store.userAccount.map((painting) => {
                 return <li key={painting.id}>
-                  <PaintingGallery painting={painting} />
+                  <PaintingGallery painting={painting} history={this.props.history} />
                   </li>
               })}
         </ul>

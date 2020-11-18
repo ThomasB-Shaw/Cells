@@ -1,6 +1,6 @@
 const paintingDetailsReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_THAT_PAINTINGS':
+      case 'SET_PAINTING_DETAILS':
         return action.payload;
       default:
         return state;

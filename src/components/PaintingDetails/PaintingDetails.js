@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom'
 
 class PaintingDetails extends Component {
   // Returns user to Gallery Home Page on click of Return to Gallery button
-  returnHome = () => {
+  returnToHome = () => {
       this.props.history.push('/home');
   }
 
