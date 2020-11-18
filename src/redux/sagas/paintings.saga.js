@@ -11,9 +11,20 @@ function* fetchPaintings() {
     }
 }
 
+// Hits Post request in movieRouter, Called in AddMovie Page.  Submits all data to both Movie and genre table in Database
+function* addPainting(action) {
+  console.log(action.payload);
+  try {
+    yield axios.post('/api/paintings', action.payload)
+  } catch (error) {
+    console.log('error in post', error);
+  }
+}
+
 
 function* paintingsSaga() {
   yield takeLatest('FETCH_PAINTINGS', fetchPaintings);
+  yield takeLatest('ADD_PAINTING', addPainting);
 }
 
 export default paintingsSaga;
