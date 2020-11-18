@@ -11,8 +11,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const paintingsRouter= require('./routes/paintings.router');
+const paintingDetailsRouter = require('./routes/painting.details.router');
 const userAccountRouter= require('./routes/user.account.router');
-const paintingComponentRouter = require('./routes/painting.component.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,8 +28,9 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/paintings', paintingsRouter);
+app.use('/api/paintingDetails', paintingDetailsRouter);
 app.use('/api/account', userAccountRouter);
-app.use('/api/components', paintingComponentRouter);
+
 
 // Serve static files
 app.use(express.static('build'));
