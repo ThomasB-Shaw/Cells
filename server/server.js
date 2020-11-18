@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/paintings', paintingsRouter);
 app.use('/api/account', userAccountReducer);
-app.use('/api/paintingsDetails', paintingDetailsRouter);
+app.use('/api/paintingDetails', paintingDetailsRouter);
 
 
 // Serve static files
