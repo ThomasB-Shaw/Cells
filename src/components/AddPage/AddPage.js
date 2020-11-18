@@ -9,7 +9,11 @@ class AddPage extends React.Component {
     description: '',
     img_url: '',
     date: '',
-    size_type: '',
+    size_type: ''
+    // method: '',
+    // colorBrand: '',
+    // color: '',
+    // tool: ''
   }
 
   handleChange = (event, typeOfKey) => {
@@ -20,6 +24,12 @@ class AddPage extends React.Component {
     })
     console.log(this.state)
 }
+
+submitClick = () => {
+  this.props.dispatch({ type:"ADD_PAINTING", payload: this.state })
+  // this.props.history.push('/edit');
+}
+
 
   render() {
     return (
@@ -57,9 +67,22 @@ class AddPage extends React.Component {
             </select>
           </label>
         </form>
-        <button>SUBMIT</button>
+        <button onClick={this.submitClick}>SUBMIT</button>
         <br/>
         <img src={this.state.img_url} alt={this.state.title}/>
+        <br/>
+        {/* <label htmlFor='method'>
+          Method:
+          <input type='text' placeholder='Method' onChange={(event) => this.handleChange(event, 'method')}/>
+          <br/>
+          Brand:
+          <input type='text' placeholder='Brand' onChange={(event) => this.handleChange(event, 'colorBrand')}/>
+          Color:
+          <input type='text' placeholder='Color' onChange={(event) => this.handleChange(event, 'color')}/>
+          <br/>
+          Tool:
+          <input type='text' placeholder='Method' onChange={(event) => this.handleChange(event, 'tool')}/>
+        </label> */}
       </div>
     )
   }

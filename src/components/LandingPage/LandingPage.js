@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import PaintingGallery from '../PaintingGallery/PaintingGallery';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
@@ -31,25 +33,14 @@ class LandingPage extends Component {
             <ul>
               {this.props.store.paintings.map((painting) => {
                 return <li key={painting.id}>
-                  <img alt={painting.description} src={painting.image_url}/>
+                  <PaintingGallery painting={painting} history={this.props.history}/>
                   </li>
               })}
             </ul>
-            {/* <ul>
-            {this.props.store.paintings &&
-              this.props.store.paintings.map((painting) => {
-                return <li key={painting.id}>
-                  <img alt={painting.description} src={painting.image_url}/>
-                  </li>
-              })
-             }
-            </ul> */}
             <button onClick={this.log}>LOG</button>
-            <br/>
-            {JSON.stringify(this.props.store.paintings)}
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(LandingPage);
+export default withRouter(connect(mapStoreToProps)(LandingPage));

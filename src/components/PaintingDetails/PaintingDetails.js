@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import {withRouter} from 'react-router'
+import {withRouter} from 'react-router-dom'
 
 class PaintingDetails extends Component {
   // Returns user to Gallery Home Page on click of Return to Gallery button
