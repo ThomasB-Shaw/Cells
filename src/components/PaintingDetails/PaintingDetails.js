@@ -6,8 +6,47 @@ import './PaintingDetails.css'
 
 class PaintingDetails extends Component {
   // Returns user to Gallery Home Page on click of Return to Gallery button
+  state = {
+    method: [],
+    color: [],
+    tool: []
+  }
+
+  componentDidMount = () => {
+    this.getComponentType(this.props.store.paintingDetails);
+  }
+
   returnToHome = () => {
       this.props.history.push('/home');
+  }
+
+  log = () => {
+    console.log(this.state);
+    console.log(this.props.store.paintingDetails);
+  }
+
+  run = () => {
+    this.getComponentType(this.props.store.paintingDetails);
+  }
+
+
+  getComponentType = (storeArray) => {
+    for (let i = 0; i < storeArray.length; i++) {
+      if(storeArray[i].type === 'method'){
+        console.log(storeArray[i]);
+        this.setState({
+          method: [...this.state.method, storeArray[i].name]
+        })
+      } else if(storeArray[i].type === 'color'){
+        this.setState({
+          color: [...this.state.color, storeArray[i].name]
+        })
+      }else if (storeArray[i].type === 'tool'){
+        this.setState({
+          tool: [...this.state.tool, storeArray[i].name]
+        })
+      } else {console.log('not working yet there boss!')}
+    }
   }
 
   render() {
@@ -33,13 +72,17 @@ class PaintingDetails extends Component {
         <h3 id='componentsDetail'>Components</h3>
         <ul id='listComponentsDetails'>
         {this.props.store.paintingDetails.map((component) => {
-            return <li key={component.id}>{component.brand} {component.name}</li>
+          return <li key={component.id}>{component.brand} {component.name}</li>
         })}
         </ul>
         <button id='returnDetail' onClick={this.returnToHome}>Return to Home</button>
+        <button onClick={this.log}>LOG</button>
+        <button onClick={this.run}>RUN</button>
       </div>
     );
   }
 }
+
+// return <li key={component.id}>{component.brand} {component.name}</li>
 
 export default withRouter(connect(mapStoreToProps)(PaintingDetails));
