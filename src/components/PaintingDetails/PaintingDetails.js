@@ -13,6 +13,11 @@ class PaintingDetails extends Component {
   }
 
   componentDidMount = () => {
+    this.setState({
+      method: [],
+      color: [],
+      tool: []
+    })
     this.getComponentType(this.props.store.paintingDetails);
   }
 
@@ -31,22 +36,35 @@ class PaintingDetails extends Component {
 
 
   getComponentType = (storeArray) => {
+    let tempMethod = [];
+    let tempColor = [];
+    let tempTool = [];
     for (let i = 0; i < storeArray.length; i++) {
       if(storeArray[i].type === 'method'){
         console.log(storeArray[i]);
-        this.setState({
-          method: [...this.state.method, storeArray[i].name]
-        })
+        console.log(this.state.method);
+        tempMethod.push(storeArray[i]);
+        // this.setState({
+        //   method: [...this.state.method, storeArray[i].name]
+        // });
       } else if(storeArray[i].type === 'color'){
-        this.setState({
-          color: [...this.state.color, storeArray[i].name]
-        })
+        tempColor.push(storeArray[i]);
+        // this.setState({
+        //   color: [...this.state.color, storeArray[i].name]
+        // });
       }else if (storeArray[i].type === 'tool'){
-        this.setState({
-          tool: [...this.state.tool, storeArray[i].name]
-        })
-      } else {console.log('not working yet there boss!')}
+        tempTool.push(storeArray[i]);
+        // this.setState({
+        //   tool: [...this.state.tool, storeArray[i].name]
+        // });
+      } else {console.log('not working yet der boss!')}
     }
+    console.log('temp',tempMethod);
+    this.setState({
+      method: tempMethod,
+    color: tempColor,
+    tool: tempTool
+    })
   }
 
   render() {
