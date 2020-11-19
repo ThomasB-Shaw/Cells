@@ -7,7 +7,7 @@ import Color from '../PaintingComponents/Color';
 import Tool from '../PaintingComponents/Tool';
 import './AddPage.css';
 
-class AddPage extends React.Component {
+class AddPage extends Component {
   state = {
     title: '',
     description: '',

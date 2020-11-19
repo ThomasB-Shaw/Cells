@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class Method extends React.Component {
+class Method extends Component {
   state = {
     method: '',
   }

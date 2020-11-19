@@ -7,7 +7,6 @@ router.get('/:ID', (req, res) => {
     let paintingID = req.params.ID;
     console.log('paintingID',paintingID)
   const queryText = `SELECT * FROM "painting"
-  JOIN "user" ON "user"."id" = "painting"."id"
   JOIN "painting_component" ON "painting"."id" = "painting_component"."painting_id"
   JOIN "component" ON "component"."id" = "painting_component"."component_id"
   WHERE "painting"."id" = $1;`;
