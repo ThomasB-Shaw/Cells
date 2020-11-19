@@ -28,7 +28,7 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="homeGallery">
         <h2>{this.state.heading}</h2>
             <ul>
               {this.props.store.paintings.map((painting) => {

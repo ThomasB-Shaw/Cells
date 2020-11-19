@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import './PaintingGallery.css';
 
 class PaintingGallery extends Component {
   // Upon click of movie poster will take user to the details page to display that movies Title, Poster, Description and Genres

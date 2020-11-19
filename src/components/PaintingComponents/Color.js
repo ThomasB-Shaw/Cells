@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class Color extends React.Component {
+class Color extends Component {
   state = {
     brand: '',
     color: ''

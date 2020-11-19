@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class AddForm extends React.Component {
+class AddForm extends Component {
   state = {
     title: '',
     description: '',

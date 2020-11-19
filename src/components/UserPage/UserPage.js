@@ -15,14 +15,14 @@ class UserPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='userGallery'>
         <h1 id="welcome">Hello There, {this.props.store.user.username}!</h1>
         <p>Your ID is: {this.props.store.user.id}</p>
         <LogOutButton className="log-in" />
         <ul>
         {this.props.store.userAccount.map((painting) => {
                 return <li key={painting.id}>
-                  <PaintingGallery painting={painting} />
+                  <PaintingGallery painting={painting} history={this.props.history} />
                   </li>
               })}
         </ul>
