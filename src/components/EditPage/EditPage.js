@@ -32,7 +32,7 @@ submitClick = () => {
 
 deletePainting = () => {
   // console.log('DELETE ITEM', item);
-  swal("Are you sure you want to delete this painting?", {
+  swal("Are you sure you want to delete this painting?", "", "warning", {
     buttons: {
       cancel: "Cancel",
       delete: {
@@ -43,20 +43,16 @@ deletePainting = () => {
   })
   .then((value) => {
     switch (value) {
-   
       case "delete":
         swal("Painting Deleted!", "Returning to your account", "success");
-        this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
-        this.props.history.push('/user');
-        break;
-   
+          this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
+          this.props.history.push('/user');
+            break;
       default:
         break;
     }
   });
   }
-  // this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
-  // this.props.history.push('/user');
 
 
   render() {
