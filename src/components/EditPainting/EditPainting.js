@@ -5,21 +5,6 @@ import {withRouter} from 'react-router-dom';
 
 class PaintingDetails extends Component {
   // Returns user to Gallery Home Page on click of Return to Gallery button
-  state = {
-    method: [],
-    color: [],
-    tool: []
-  }
-
-  componentDidMount = () => {
-    this.setState({
-      method: [],
-      color: [],
-      tool: []
-    })
-    this.getComponentType(this.props.store.paintingDetails);
-  }
-
   returnToHome = () => {
       this.props.history.push('/home');
   }
@@ -28,40 +13,15 @@ class PaintingDetails extends Component {
     this.props.history.push('/edit')
   }
 
-  log = () => {
-    console.log(this.state);
-    console.log(this.props.store.paintingDetails);
-  }
+    // TESTING LOGS
+//   log = () => {
+//     console.log(this.state);
+//     console.log(this.props.store.paintingDetails);
+//   }
 
-  run = () => {
-    this.getComponentType(this.props.store.paintingDetails);
-  }
-
-
-  getComponentType = (storeArray) => {
-    let tempMethod = [];
-    let tempColor = [];
-    let tempTool = [];
-    for (let i = 0; i < storeArray.length; i++) {
-      if(storeArray[i].type === 'method'){
-        console.log(storeArray[i]);
-        console.log(this.state.method);
-        // event.preventDefault();
-        this.setState({
-          method: [...this.state.method, storeArray[i].name]
-        });
-      } else if(storeArray[i].type === 'color'){
-        this.setState({
-          color: [...this.state.color, storeArray[i].name]
-        });
-      }else if (storeArray[i].type === 'tool'){
-        this.setState({
-          tool: [...this.state.tool, storeArray[i].name]
-        });
-      } else {console.log('not working yet der boss!')}
-    }
-    console.log('temp',tempMethod);
-  }
+//   run = () => {
+//     this.getComponentType(this.props.store.paintingDetails);
+//   }
 
   render() {
     return (
@@ -85,17 +45,30 @@ class PaintingDetails extends Component {
         }
         <h3 id='componentsDetail'>Components</h3>
         <ul id='listComponentsDetails'>
-        {this.props.store.paintingDetails.map((component) => {
-          return <li key={component.id}>{component.brand} {component.name}</li>
+        {this.props.store.paintingDetails.map(component => {
+          {return component.type === 'method' ?
+            <div className='methodGroup'>
+              <li key={component.id}>{component.name}</li>
+            </div>
+            : component.type === 'color' ?
+              <div className='colorGroup'>
+                <li key={component.id}>{component.brand}: {component.name}</li>
+              </div>
+            : component.type === 'tool' ?
+              <div className='toolGroup'>
+                <li key={component.id}>{component.name}</li>
+              </div>
+            :
+              <p>How did we get here chief?</p>
+          }
         })}
         </ul>
-        <button id='returnDetail' onClick={this.returnToHome}>Return to Home</button>
-        <button onClick={this.editClick}>Edit Painting</button>
+        <button  onClick={this.returnToHome}>Return to Home</button>
         <br/>
-        <button onClick={this.log}>LOG</button>
-        <button onClick={this.run}>RUN</button>
+        {/* Testing Log Buttons */}
+        {/* <button onClick={this.log}>LOG</button>
+        <button onClick={this.run}>RUN</button> */}
         <br/>
-        {JSON.stringify(this.state)}
       </div>
     );
   }
