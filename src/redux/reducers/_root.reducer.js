@@ -4,6 +4,7 @@ import user from './user.reducer';
 import paintings from './paintings.reducer';
 import userAccount from './user.account.reducer';
 import paintingDetails from './paintingDetails.reducer';
+import componentDetails from './components.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   paintings,  // Contains main database of paintings for Home/Account Page
   userAccount, 
-  paintingDetails // Contains all information from the database on a singular painting
+  paintingDetails, // Contains all information from the database on a singular painting
+  componentDetails
 });
 
 export default rootReducer;

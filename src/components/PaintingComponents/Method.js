@@ -33,7 +33,7 @@ addClick = (event, typeOfKey) => {
       <div className='paintingComponent'>
         <label htmlFor='method'>
           Method:
-          <input type='text' placeholder='Method' onChange={(event) => this.props.handleChange(event, 'method')}/>
+          <input type='text' placeholder='Method' onChange={(event) => this.state.handleChange(event, 'method')}/>
         </label>
         <button onClick={this.props.addClick}>Add</button>
       </div>

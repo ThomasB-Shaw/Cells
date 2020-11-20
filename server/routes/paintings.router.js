@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    let queryText = ` SELECT * FROM "painting";`;
+    let queryText = ` SELECT * FROM "painting" ORDER BY RANDOM() LIMIT 9; `;
     pool.query(queryText)
       .then((result) => {
           res.send(result.rows);
