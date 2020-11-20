@@ -29,15 +29,24 @@ submitClick = () => {
   this.props.dispatch({ type:"ADD_PAINTING", payload: this.state })
 }
 
+deletePainting = () => {
+  // console.log('DELETE ITEM', item);
+  this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
+  this.props.history.push('/user');
+}
+
 
   render() {
     return (
       <div>
         {/* <EditPainting /> */}
-        <AddForm />
+        <AddForm handleChange={this.handleChange} state={this.state}/>
         <Method />
         <Color />
         <Tool />
+        {this.props.store.paintingDetails[0] &&
+          <button onClick={this.deletePainting}>DELETE Painting</button>
+        }
       </div>
     )
   }

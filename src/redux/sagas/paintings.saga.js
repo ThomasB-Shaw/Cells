@@ -11,7 +11,7 @@ function* fetchPaintings() {
     }
 }
 
-// Hits Post request in movieRouter, Called in AddMovie Page.  Submits all data to both Movie and genre table in Database
+// Hits Post request in painting.router, Called in addPage Page.  Submits all data to both Painting and Components table in Database
 function* addPainting(action) {
   console.log(action.payload);
   try {
@@ -21,10 +21,19 @@ function* addPainting(action) {
   }
 }
 
+function* deletePainting(action) {
+  try {
+    yield axios.delete(`/api/paintings/${action.payload}`);
+  } catch (error) {
+    console.log('ERROR in axios delete painting', error);
+  }
+}
+
 
 function* paintingsSaga() {
   yield takeLatest('FETCH_PAINTINGS', fetchPaintings);
   yield takeLatest('ADD_PAINTING', addPainting);
+  yield takeLatest('DELETE_PAINTING', deletePainting);
 }
 
 export default paintingsSaga;

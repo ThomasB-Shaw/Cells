@@ -18,6 +18,7 @@ class Method extends Component {
 
 addClick = (event, typeOfKey) => {
   // this.props.dispatch({ type:"ADD_PAINTING_COMPONENT", payload: this.state });
+  
   console.log('There was a add!');
     this.setState({
         ...this.state,

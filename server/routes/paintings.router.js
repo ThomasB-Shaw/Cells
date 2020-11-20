@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // DELETE route code here
-  // console.log('req.body params', req.params.id);
+  console.log('req.body params', req.params.id);
   let id = req.params.id;
   const queryText = `DELETE FROM "painting" WHERE "painting"."id" = $1;`;
   pool.query(queryText, [id]).then((result) => {
