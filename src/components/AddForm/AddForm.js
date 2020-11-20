@@ -21,7 +21,7 @@ class AddForm extends Component {
 }
 
 submitClick = () => {
-  this.props.dispatch({ type:"ADD_PAINTING", payload: this.state })
+  this.props.dispatch({ type:"ADD_PAINTING", payload: this.props.state })
   // this.props.history.push('/edit');
 }
 
@@ -32,24 +32,27 @@ submitClick = () => {
         <h1>Add New Painting!</h1>
         <label htmlFor='title'>
           Title:
-          <input type='text' placeholder='title' onChange={(event) => this.handleChange(event, 'title')}/>
+          <input type='text' placeholder='title' onChange={(event) => this.props.handleChange(event, 'title')}/>
         </label>
         <label htmlFor='description'>
           Description:
-          <input type='text' placeholder='Description' onChange={(event) => this.handleChange(event, 'description')}/>
+          <input type='text' placeholder='Description' onChange={(event) => this.props.handleChange(event, 'description')}/>
         </label>
         <label htmlFor='image_url'>
           Image URL:
-          <input type='text' placeholder='Image URL' onChange={(event) => this.handleChange(event, 'img_url')}/>
+          <input type='text' placeholder='Image URL' onChange={(event) => this.props.handleChange(event, 'img_url')}/>
         </label>
+        <br/>
+        <img src={this.props.state.img_url} alt={this.props.state.title}/>
+        <br/>
         <label htmlFor='date'>
           Date:
-          <input type='date' onChange={(event) => this.handleChange(event, 'date')}/>
+          <input type='date' onChange={(event) => this.props.handleChange(event, 'date')}/>
         </label>
         <form>
-          <label htmlFor='image_url'>
+          <label htmlFor='size_type'>
             Size:
-            <select name='size' id='size' onChange={(event) => this.handleChange(event, 'size_type')}>
+            <select name='size' id='size' onChange={(event) => this.props.handleChange(event, 'size_type')}>
             <option value=''></option>
               <option value='5x5'>5x5</option>
               <option value='8x10'>8x10</option>
@@ -63,9 +66,6 @@ submitClick = () => {
           </label>
         </form>
         <button onClick={this.submitClick}>SUBMIT</button>
-        <br/>
-        <img src={this.state.img_url} alt={this.state.title}/>
-        <br/>
       </div>
     )
   }

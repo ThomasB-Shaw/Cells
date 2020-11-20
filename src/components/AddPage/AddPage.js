@@ -30,11 +30,15 @@ submitClick = () => {
   // this.props.history.push('/edit');
 }
 
+log = () => {
+  console.log(this.state);
+}
 
   render() {
     return (
       <div>
-        <AddForm />
+        <AddForm handleChange={this.handleChange} state={this.state}/>
+        <button onClick={this.log}>LOG STATE</button>
         <Method />
         <Color />
         <Tool />
