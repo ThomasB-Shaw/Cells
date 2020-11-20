@@ -9,11 +9,11 @@ import EditPainting from'../EditPainting/EditPainting';
 
 class EditPage extends Component {
   state = {
-    title: this.props.store.paintingDetails[0],
-    description: this.props.store.paintingDetails[0],
-    img_url: this.props.store.paintingDetails[0],
-    date: this.props.store.paintingDetails[0],
-    size_type: this.props.store.paintingDetails[0]
+    title: '',
+    description: '',
+    img_url: '',
+    date: '',
+    size_type: ''
   }
 
   handleChange = (event, typeOfKey) => {
@@ -27,15 +27,13 @@ class EditPage extends Component {
 
 submitClick = () => {
   this.props.dispatch({ type:"ADD_PAINTING", payload: this.state })
-  // this.props.history.push('/edit');
 }
 
 
   render() {
     return (
       <div>
-        {JSON.stringify(this.state)}
-        <EditPainting />
+        {/* <EditPainting /> */}
         <AddForm />
         <Method />
         <Color />

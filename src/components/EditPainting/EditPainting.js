@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {withRouter} from 'react-router-dom';
 
-class PaintingDetails extends Component {
+class EditPainting extends Component {
   // Returns user to Gallery Home Page on click of Return to Gallery button
   returnToHome = () => {
       this.props.history.push('/home');
@@ -76,4 +76,4 @@ class PaintingDetails extends Component {
 
 // return <li key={component.id}>{component.brand} {component.name}</li>
 
-export default withRouter(connect(mapStoreToProps)(PaintingDetails));
+export default withRouter(connect(mapStoreToProps)(EditPainting));
