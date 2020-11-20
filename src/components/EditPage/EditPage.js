@@ -5,6 +5,7 @@ import AddForm from '../AddForm/AddForm';
 import Method from '../PaintingComponents/Method';
 import Color from '../PaintingComponents/Color';
 import Tool from '../PaintingComponents/Tool';
+import swal from 'sweetalert';
 import EditPainting from'../EditPainting/EditPainting';
 
 class EditPage extends Component {
@@ -31,9 +32,31 @@ submitClick = () => {
 
 deletePainting = () => {
   // console.log('DELETE ITEM', item);
-  this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
-  this.props.history.push('/user');
-}
+  swal("Are you sure you want to delete this painting?", {
+    buttons: {
+      cancel: "Cancel",
+      delete: {
+        text: "Delete",
+        value: "delete",
+      },
+    },
+  })
+  .then((value) => {
+    switch (value) {
+   
+      case "delete":
+        swal("Painting Deleted!", "Returning to your account", "success");
+        this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
+        this.props.history.push('/user');
+        break;
+   
+      default:
+        break;
+    }
+  });
+  }
+  // this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
+  // this.props.history.push('/user');
 
 
   render() {
