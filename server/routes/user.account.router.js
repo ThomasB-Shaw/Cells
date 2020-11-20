@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
+  console.log(req.user.id);
     let queryText = ` SELECT * FROM "painting" WHERE "user_id" = ${req.user.id};`;
     pool.query(queryText)
       .then((result) => {
