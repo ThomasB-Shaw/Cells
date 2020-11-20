@@ -16,8 +16,14 @@ class Method extends Component {
     console.log(this.state);
 }
 
-addClick = () => {
-  this.props.dispatch({ type:"ADD_PAINTING_COMPONENT", payload: this.state });
+addClick = (event, typeOfKey) => {
+  // this.props.dispatch({ type:"ADD_PAINTING_COMPONENT", payload: this.state });
+  console.log('There was a add!');
+    this.setState({
+        ...this.state,
+        [typeOfKey]: [...this.state.typeOfKey, event.target.value]
+    })
+    console.log(this.state);
 }
 
 
@@ -26,9 +32,9 @@ addClick = () => {
       <div className='paintingComponent'>
         <label htmlFor='method'>
           Method:
-          <input type='text' placeholder='Method' onChange={(event) => this.handleChange(event, 'method')}/>
+          <input type='text' placeholder='Method' onChange={(event) => this.props.handleChange(event, 'method')}/>
         </label>
-        <button onClick={this.addClick}>Add</button>
+        <button onClick={this.props.addClick}>Add</button>
       </div>
     )
   }
