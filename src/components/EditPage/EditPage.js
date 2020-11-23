@@ -50,8 +50,8 @@ class EditPage extends Component {
     console.log(this.state)
 }
 
-submitClick = () => {
-  this.props.dispatch({ type:"EDIT_PAINTING", payload: this.state })
+updatePainting = () => {
+  this.props.dispatch({ type:"EDIT_PAINTING", payload: this.state, id: this.props.store.paintingDetails[0].painting_id })
 }
 
 deletePainting = () => {
@@ -89,6 +89,9 @@ deletePainting = () => {
         <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} /> */}
         {this.props.store.paintingDetails[0] &&
           <button onClick={this.deletePainting}>DELETE Painting</button>
+        }
+        {this.props.store.paintingDetails[0] &&
+          <button onClick={this.updatePainting}>SAVE CHANGES</button>
         }
       </div>
     )

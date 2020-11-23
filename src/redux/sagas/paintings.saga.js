@@ -29,11 +29,20 @@ function* deletePainting(action) {
   }
 }
 
+function* updatePainting(action) {
+  try {
+    yield axios.put(`/api/paintings/${action.id}`, action.payload);
+  } catch (error) {
+    console.log('ERROR in axios delete painting', error);
+  }
+}
+
 
 function* paintingsSaga() {
   yield takeLatest('FETCH_PAINTINGS', fetchPaintings);
   yield takeLatest('ADD_PAINTING', addPainting);
   yield takeLatest('DELETE_PAINTING', deletePainting);
+  yield takeLatest('EDIT_PAINTING', updatePainting);
 }
 
 export default paintingsSaga;

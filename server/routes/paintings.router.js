@@ -30,6 +30,7 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   console.log('req.body params', req.params.id);
+  console.log('REQ.BODY', req.body)
   let id = req.params.id;
   const queryText = ` UPDATE "painting"
   SET "title" = $2, "description" = $3, "image_url" = $4, "date" = $5, "size_type" = $6
