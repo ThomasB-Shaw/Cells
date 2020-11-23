@@ -54,7 +54,7 @@ submitClick = () => {
       brand: '',
       tool: ''
     })
-    // this.props.history.push('/user');
+    this.props.history.push('/user');
   }
 }
 
