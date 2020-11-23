@@ -27,11 +27,16 @@ addClick = () => {
       <div className='paintingComponent'>
         <label htmlFor='color'>
           Brand:
-          <input type='text' placeholder='Brand' onChange={(event) => this.handleChange(event, 'brand')}/>
+          <input type='text' placeholder='Brand' onChange={(event) => this.props.handleChange(event, 'brand')}/>
           Color:
-          <input type='text' placeholder='Color' onChange={(event) => this.handleChange(event, 'color')}/>
+          <input type='text' placeholder='Color' onChange={(event) => this.props.handleChange(event, 'color')}/>
         </label>
-        <button onClick={this.addClick}>Add</button>
+        <button value={this.props.tool} onClick={(value) => this.props.addClick(value, 'color')}>Add</button>
+        <ul>
+          {this.props.state.colorList.map((color) => {
+            return <li key={color[1]}> Brand: {color[0]} Color: {color[1]} </li>
+          })}
+        </ul>
       </div>
     )
   }

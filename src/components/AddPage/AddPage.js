@@ -19,6 +19,7 @@ class AddPage extends Component {
     toolList: [],
     method: '',
     color: '',
+    brand: '',
     tool: ''
   }
 
@@ -38,11 +39,24 @@ submitClick = () => {
 
 addClick = (event, typeOfKey) => {
   // this.props.dispatch({ type:"ADD_PAINTING_COMPONENT", payload: this.state });
-  console.log('There was a add!');
+  if(typeOfKey === 'method'){
+  console.log('There was a add!', typeOfKey);
     this.setState({
         ...this.state,
-        [typeOfKey]: [...this.state.typeOfKey, event.target.value]
-    })
+        methodList: [...this.state.methodList, this.state.method]
+    })} else if (typeOfKey === 'color') {
+      console.log('There was a add!', typeOfKey);
+        this.setState({
+            ...this.state,
+            colorList: [...this.state.colorList, [this.state.brand, this.state.color]]
+        })} else if (typeOfKey === 'tool') {
+          console.log('There was a add!', typeOfKey);
+            this.setState({
+                ...this.state,
+                toolList: [...this.state.toolList, this.state.tool]
+            })} else { 
+              console.log('Error type of update unknown')
+            }
     console.log(this.state);
 }
 
@@ -53,11 +67,12 @@ log = () => {
   render() {
     return (
       <div>
-        <AddForm handleChange={this.handleChange} state={this.state}/>
+        {JSON.stringify(this.state.colorList)}
+        <AddForm state={this.state} handleChange={this.handleChange}/>
         <button onClick={this.log}>LOG STATE</button>
-        <Method addClick={this.addClick} handleChange={this.handleChange}/>
-        <Color addClick={this.addClick}/>
-        <Tool addClick={this.addClick}/>
+        <Method  state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
+        <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
+        <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
       </div>
     )
   }

@@ -1,4 +1,5 @@
 const express = require('express');
+const { string } = require('prop-types');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -14,77 +15,174 @@ router.get('/', (req, res) => {
       });
   });
 
-  // router.post('/', (req, res) => {
-  //   userID= Number(req.user.id);
-  //   console.log('USERID', userID)
-  //   console.log(req.body);
-  //   // RETURNING "id" will give us back the id of the created painting
-  //   const insertPaintingQuery = `
-  //   INSERT INTO "painting" ("user_id", "title", "description", "image_url", "date", "size_type")
-  //   VALUES ($1, $2, $3, $4, $5, %6);`
-  //   // FIRST QUERY MAKES Painting
-  //   pool.query(insertPaintingQuery, [userID, req.body.title, req.body.description, req.body.image_url, req.body.date, req.body.size_type ])
-  //   .then(result => {
-  //         res.sendStatus(201);
-  // // Catch for first query
-  //   }).catch(err => {
-  //     console.log(err);
-  //     res.sendStatus(500)
-  //   })
-  // });
-
-  router.post('/', (req, res) => {
-    let userID = req.user.id;
-    console.log('USER ID:', userID)
-    console.log(req.body);
-    console.log(req.body , 'coming in from the POST REQUEST');
-    console.log('userID',userID);
-    const queryText = `INSERT INTO "painting" ("user_id", "title", "description", "image_url", "date", "size_type")
-    VALUES ($1, $2, $3, $4, $5, $6);`
-    pool.query(queryText, [userID, req.body.title, req.body.description, req.body.img_url, req.body.date, req.body.size_type ])
-      .then((result) => {
-          res.sendStatus(200);
-      }).catch((error) =>{
-        console.log(`Error with POST` , error);
-        res.sendStatus(500);
-      });
-  });
-
-  
 // router.post('/', (req, res) => {
-//   console.log(req.body);
-//   // RETURNING "id" will give us back the id of the created painting
-//   const insertPaintingQuery = `
-//   INSERT INTO "painting" ("user_id", "title", "description", "image_url", "date", "size_type")
-//   VALUES ($1, $2, $3, $4, $5, %6)
+//   let userID = req.user.id;
+//   const queryText = `INSERT INTO "painting" ("user_id", "title", "description", "image_url", "date", "size_type")
+//   VALUES ($1, $2, $3, $4, $5, $6)
 //   RETURNING "id";`
-
-//   // FIRST QUERY MAKES Painting
-//   pool.query(insertPaintingQuery, [req.user.id, req.body.title, req.body.description, req.body.image_url, req.body.date, req.body.size_type ])
-//   .then(result => {
-//     console.log('New Painting Id:', result.rows[0].id); //ID IS HERE!
-    
-//     const createdPaintingId = result.rows[0].id
-
-//     const insertPaintingComponentQuery = `
-//       INSERT INTO "painting_component" ("painting_id", "component_id")
-//       VALUES  ($1, $2);
-//       `
-//       // SECOND QUERY MAKES component FOR THAT NEW Painting
-//       pool.query(insertPaintingComponentQuery, [createdPaintingId, req.body.component.id]).then(result => {
+//   pool.query(queryText, [userID, req.body.title, req.body.description, req.body.img_url, req.body.date, req.body.size_type ])
+//     .then((result) => {
+//     const methodList = req.body.methodList
+//     console.log('In Post', methodList);
+//     for(let method of methodList) {
+//       console.log(method);
+//       const insertMethodQuery = `
+//       INSERT INTO "component" ("name", "type")
+//       VALUES ($1, 'method')
+//       RETURNING "id";`
+//       pool.query(insertMethodQuery, [method])
+//       .then(componentResult => {
+//         console.log('Results.rows deal', componentResult.rows[0].id, 'PaintingID', result.rows[0].id)
+//         let createdPaintingId = result.rows[0].id
+//         let createdComponentId = componentResult.rows[0].id
+//         console.log('IDs' ,createdComponentId, createdPaintingId);
+//         const insertManyPainting = `
+//         INSERT INTO "painting_component" ("painting_id", "component_id")
+//         VALUES  ($1, $2);`
+//         pool.query(insertManyPainting, [createdPaintingId, createdComponentId]).then(resultMany => {
 //         //Now that both are done, send back success!
+//         console.log(resultMany)
+//         res.sendStatus(201);
+//         })
+//       })
+//       }}).then((methodResult) => { console.log(req.body);
+//       console.log('IN METHODRESULT THIS IS THE WAY', methodResult)
+//       const toolList = req.body.toolList
+//       console.log('In Post', toolList);
+//       for(let tool of toolList) {
+//         console.log(tool);
+//         const insertToolQuery = `
+//         INSERT INTO "component" ("name", "type")
+//         VALUES ($1, 'tool')
+//         RETURNING "id";`
+//         pool.query(insertToolQuery, [tool])
+//         .then(toolResult => {
+//             console.log('Results.rows deal', toolResult.rows[0].id)
+//             let createdPaintingId = result.rows[0].id
+//             let createdToolId = toolResult.rows[0].id
+//             console.log('IDs' ,createdToolId, createdPaintingId);
+//             const insertManyPainting = `
+//           INSERT INTO "painting_component" ("painting_id", "component_id")
+//           VALUES  ($1, $2);`
+//           pool.query(insertManyPainting, [createdPaintingId, createdToolId]).then(resultMany => {
+//             //Now that both are done, send back success!
+//             console.log(resultMany)
+//             res.sendStatus(201);
+//           }).catch(err => {
+//             // catch for second query
+//             console.log(err);
+//             res.sendStatus(500)
+//           })})
+//       }}).catch(err => {
+//         console.log(err);
+//         res.sendStatus(500)
+//       }).then((methodResult) => { console.log(req.body);
+//       const toolList = req.body.toolList
+//       console.log('In Post', toolList);
+//       for(let tool of toolList) {
+//         console.log(tool);
+//         const insertToolQuery = `
+//         INSERT INTO "component" ("name", "type")
+//         VALUES ($1, 'tool')
+//         RETURNING "id";`
+//         pool.query(insertToolQuery, [tool])
+//         .then(toolResult => {
+//             console.log('Results.rows deal', toolResult.rows[0].id)
+//             let createdPaintingId = result.rows[0].id
+//             let createdToolId = toolResult.rows[0].id
+//             console.log('IDs' ,createdToolId, createdPaintingId);
+//             const insertManyPainting = `
+//           INSERT INTO "painting_component" ("painting_id", "component_id")
+//           VALUES  ($1, $2);`
+//           pool.query(insertManyPainting, [createdPaintingId, createdToolId]).then(resultMany => {
+//             //Now that both are done, send back success!
+//             console.log(resultMany)
+//             res.sendStatus(201);
+//           }).catch(err => {
+//             // catch for second query
+//             console.log(err);
+//             res.sendStatus(500)
+//           })
+//         }).catch((error) =>{
+//           console.log(`Error with POST` , error);
+//           res.sendStatus(500);
+//         });
+//       }
+//     }).then((toolExit) => {
+//       const colorList = req.body.colorList
+//       console.log('In Post', colorList);
+//       for(let color of colorList) {
+//         console.log(color);
+//         const insertColorQuery = `
+//         INSERT INTO "component" ("name", "brand" , "type")
+//         VALUES ($1, $2, 'color')
+//         RETURNING "id";`
+//         pool.query(insertColorQuery, [color[0], color[1]])
+//         .then(colorResult => {
+//             console.log('Results.rows deal', colorResult.rows[0].id)
+//             let createdPaintingId = result.rows[0].id
+//             let createdColorId = colorResult.rows[0].id
+//             console.log('IDs' ,createdColorId, createdPaintingId);
+//             const insertManyPainting = `
+//           INSERT INTO "painting_component" ("painting_id", "component_id")
+//           VALUES  ($1, $2);`
+//           pool.query(insertManyPainting, [createdPaintingId, createdColorId]).then(resultMany => {
+//             //Now that both are done, send back success!
+//             console.log(resultMany)
+//             res.sendStatus(201);
+//           }).catch(err => {
+//             // catch for second query
+//             console.log(err);
+//             res.sendStatus(500)
+//           })
+//         }).catch(err => {
+//           console.log(err);
+//           res.sendStatus(500)
+//         })
+//        }
+//     }).catch(err => {
+//     console.log(err);
+//     res.sendStatus(500)
+//     }  
+//     )
+//   });
+
+
+
+
+// router.post('/', (req, res) => {
+//   const colorList = req.body.colorList
+//   console.log('In Post', colorList);
+//   for(let color of colorList) {
+//     console.log(color);
+//     const insertColorQuery = `
+//     INSERT INTO "component" ("name", "brand" , "type")
+//     VALUES ($1, $2, 'color')
+//     RETURNING "id";`
+
+//     pool.query(insertColorQuery, [color[0], color[1]])
+//     .then(colorResult => {
+//         console.log('Results.rows deal', colorResult.rows[0].idB)
+//         let createdPaintingId = result.rows[0].id
+//         let createdColorId = colorResult.rows[0].id
+//         console.log('IDs' ,createdColorId, createdPaintingId);
+//         const insertManyPainting = `
+//       INSERT INTO "painting_component" ("painting_id", "component_id")
+//       VALUES  ($1, $2);`
+//       pool.query(insertManyPainting, [createdPaintingId, createdColorId]).then(resultMany => {
+//         //Now that both are done, send back success!
+//         console.log(resultMany)
 //         res.sendStatus(201);
 //       }).catch(err => {
 //         // catch for second query
 //         console.log(err);
 //         res.sendStatus(500)
 //       })
-
-// // Catch for first query
-//   }).catch(err => {
-//     console.log(err);
-//     res.sendStatus(500)
-//   })
+//     }).catch(err => {
+//       console.log(err);
+//       res.sendStatus(500)
+//     })
+//   }
 // });
 
 router.delete('/:id', (req, res) => {
@@ -99,5 +197,116 @@ router.delete('/:id', (req, res) => {
     res.sendStatus(500);
   });
 });
+
+// router.post('/', (req,res) => {
+//   const queryTextOne = `INSERT INTO "public"."painting_component"("id","painting_id","component_id")
+//   VALUES (2,2,2)`
+//   const queryTextTwo = `INSERT INTO "public"."painting_component"("id","painting_id","component_id")
+//   VALUES (1,1,1)`
+
+//   pool.query(queryTextOne)
+//   pool.query(queryTextTwo).then((result) => {
+//     res.sendStatus(200);
+//   }).catch((error) => {
+//     console.log('Nice Try Dork', error);
+//     res.sendStatus(500);
+//   });
+// });
+
+router.post('/', (req, res) => {
+  let userID = req.user.id;
+  const queryText = `INSERT INTO "painting" ("user_id", "title", "description", "image_url", "date", "size_type")
+  VALUES ($1, $2, $3, $4, $5, $6)
+  RETURNING "id";`
+  pool.query(queryText, [userID, req.body.title, req.body.description, req.body.img_url, req.body.date, req.body.size_type ])
+    .then((result) => {
+    const methodList = req.body.methodList
+    console.log('In Post', methodList);
+    for(let method of methodList) {
+      console.log(method);
+      const insertMethodQuery = `
+      INSERT INTO "component" ("name", "type")
+      VALUES ($1, 'method')
+      RETURNING "id";`
+      pool.query(insertMethodQuery, [method])
+      .then(componentResult => {
+        console.log('Results.rows deal', componentResult.rows[0].id, 'PaintingID', result.rows[0].id)
+        let createdPaintingId = result.rows[0].id
+        let createdComponentId = componentResult.rows[0].id
+        console.log('IDs' ,createdComponentId, createdPaintingId);
+        const insertManyPainting = `
+        INSERT INTO "painting_component" ("painting_id", "component_id")
+        VALUES  ($1, $2);`
+        pool.query(insertManyPainting, [createdPaintingId, createdComponentId]).then(resultMany => {
+        //Now that both are done, send back success!
+        console.log(resultMany)
+        res.sendStatus(201);
+        })
+      })
+      }
+      const toolList = req.body.toolList
+      console.log('In Post', toolList);
+      for(let tool of toolList) {
+        console.log(tool);
+        const insertToolQuery = `
+        INSERT INTO "component" ("name", "type")
+        VALUES ($1, 'tool')
+        RETURNING "id";`
+        pool.query(insertToolQuery, [tool])
+        .then(toolResult => {
+            console.log('Results.rows deal', toolResult.rows[0].id)
+            let createdPaintingId = result.rows[0].id
+            let createdToolId = toolResult.rows[0].id
+            console.log('IDs' ,createdToolId, createdPaintingId);
+            const insertManyPainting = `
+          INSERT INTO "painting_component" ("painting_id", "component_id")
+          VALUES  ($1, $2);`
+          pool.query(insertManyPainting, [createdPaintingId, createdToolId]).then(resultMany => {
+            //Now that both are done, send back success!
+            console.log(resultMany)
+            res.sendStatus(201);
+          }).catch(err => {
+            // catch for second query
+            console.log(err);
+            res.sendStatus(500)
+          })
+        }).catch((error) =>{
+          console.log(`Error with POST` , error);
+          res.sendStatus(500);
+        });
+      }
+      const colorList = req.body.colorList
+      console.log('In Post', colorList);
+      for(let color of colorList) {
+        console.log(color);
+        const insertColorQuery = `
+        INSERT INTO "component" ("name", "brand" , "type")
+        VALUES ($1, $2, 'color')
+        RETURNING "id";`
+        pool.query(insertColorQuery, [color[0], color[1]])
+        .then(colorResult => {
+            console.log('Results.rows deal', colorResult.rows[0].id)
+            let createdPaintingId = result.rows[0].id
+            let createdColorId = colorResult.rows[0].id
+            console.log('IDs' ,createdColorId, createdPaintingId);
+            const insertManyPainting = `
+            INSERT INTO "painting_component" ("painting_id", "component_id")
+            VALUES  ($1, $2);`
+            pool.query(insertManyPainting, [createdPaintingId, createdColorId]).then(resultMany => {
+              //Now that both are done, send back success!
+              console.log(resultMany)
+              res.sendStatus(201);
+            }).catch(err => {
+              // catch for second query
+              console.log('ERROR IN COLOR POST CHECK IT OUT!', err);
+              res.sendStatus(500)
+            })
+        })
+      }}).catch(err => {
+    console.log('End Game ERROR',err);
+    res.sendStatus(500)
+    }  
+    )
+  });
 
 module.exports = router;

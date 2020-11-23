@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 //GET ROUTE Grabs all data from genres table and movies table from database
-router.get('/:ID', rejectUnauthenticated, (req, res) => {
+router.get('/:ID', (req, res) => {
     let paintingID = req.params.ID;
     console.log('paintingID',paintingID)
   const queryText = `SELECT * FROM "painting"
