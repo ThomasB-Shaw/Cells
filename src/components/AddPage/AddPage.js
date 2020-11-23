@@ -6,6 +6,7 @@ import Method from '../PaintingComponents/Method';
 import Color from '../PaintingComponents/Color';
 import Tool from '../PaintingComponents/Tool';
 import './AddPage.css';
+import swal from 'sweetalert';
 
 class AddPage extends Component {
   state = {
@@ -32,13 +33,33 @@ class AddPage extends Component {
     console.log(this.state)
 }
 
+// Checks if all values as properly filled in, if so confirms that painting was posted.  Or warns that all data is not filled in.
 submitClick = () => {
-  this.props.dispatch({ type:"ADD_PAINTING", payload: this.state })
-  // this.props.history.push('/edit');
+  if(this.state.title === '' || this.state.description === '' || this.state.img_url === '' || this.state.date === '' || this.state.size_type === '' || this.state.methodList === [] || this.state.colorList === [] || this.state.toolList === []){
+    swal("Warning!", "Please ensure that you have all required fields filled in!", "warning");
+  } else {
+    this.props.dispatch({ type:"ADD_PAINTING", payload: this.state });
+    swal("Success!", "Painting was added, Returning to your page", "Success");
+    this.setState ({
+      title: '',
+      description: '',
+      img_url: '',
+      date: '',
+      size_type: '',
+      methodList: [],
+      colorList: [],
+      toolList: [],
+      method: '',
+      color: '',
+      brand: '',
+      tool: ''
+    })
+    // this.props.history.push('/user');
+  }
 }
 
 addClick = (event, typeOfKey) => {
-  // this.props.dispatch({ type:"ADD_PAINTING_COMPONENT", payload: this.state });
+
   if(typeOfKey === 'method'){
   console.log('There was a add!', typeOfKey);
     this.setState({
@@ -60,16 +81,10 @@ addClick = (event, typeOfKey) => {
     console.log(this.state);
 }
 
-log = () => {
-  console.log(this.state);
-}
-
   render() {
     return (
       <div>
-        {JSON.stringify(this.state.colorList)}
-        <AddForm state={this.state} handleChange={this.handleChange}/>
-        <button onClick={this.log}>LOG STATE</button>
+        <AddForm state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history}/>
         <Method  state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
         <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
         <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>

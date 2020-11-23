@@ -11,10 +11,17 @@ import EditPainting from'../EditPainting/EditPainting';
 class EditPage extends Component {
   state = {
     title: '',
-    description: '',
-    img_url: '',
-    date: '',
-    size_type: ''
+      description: '',
+      img_url: '',
+      date: '',
+      size_type: '',
+      methodList: [],
+      colorList: [],
+      toolList: [],
+      method: '',
+      color: '',
+      brand: '',
+      tool: ''
   }
 
   handleChange = (event, typeOfKey) => {
@@ -60,9 +67,9 @@ deletePainting = () => {
       <div>
         {/* <EditPainting /> */}
         <AddForm handleChange={this.handleChange} state={this.state}/>
-        <Method />
-        <Color />
-        <Tool />
+        {/* <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+        <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+        <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} /> */}
         {this.props.store.paintingDetails[0] &&
           <button onClick={this.deletePainting}>DELETE Painting</button>
         }

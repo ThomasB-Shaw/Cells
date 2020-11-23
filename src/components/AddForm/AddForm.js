@@ -20,12 +20,6 @@ class AddForm extends Component {
     console.log(this.state)
 }
 
-submitClick = () => {
-  this.props.dispatch({ type:"ADD_PAINTING", payload: this.props.state })
-  // this.props.history.push('/edit');
-}
-
-
   render() {
     return (
       <div>
@@ -65,7 +59,7 @@ submitClick = () => {
             </select>
           </label>
         </form>
-        <button onClick={this.submitClick}>SUBMIT</button>
+        <button onClick={this.props.submitClick}>SUBMIT</button>
       </div>
     )
   }
