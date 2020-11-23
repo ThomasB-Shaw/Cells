@@ -28,6 +28,20 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+  console.log('req.body params', req.params.id);
+  let id = req.params.id;
+  const queryText = ` UPDATE "painting"
+  SET "title" = $2, "description" = $3, "image_url" = $4, "date" = $5, "size_type" = $6
+  WHERE "id" = $1;`;
+  pool.query(queryText, [id, req.body.title, req.body.description, req.body.img_url, req.body.date, req.body.size_type]).then((result) => {
+    res.sendStatus(200);
+  }).catch((error) => {
+    console.log('ERROR in DELETE route', error);
+    res.sendStatus(500);
+  });
+});
+
 router.post('/', (req, res) => {
   let userID = req.user.id;
   const queryText = `INSERT INTO "painting" ("user_id", "title", "description", "image_url", "date", "size_type")

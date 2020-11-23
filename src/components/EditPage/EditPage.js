@@ -84,7 +84,6 @@ deletePainting = () => {
       <div>
         {/* <EditPainting /> */}
         <AddForm handleChange={this.handleChange} state={this.state}/>
-        <input value={this.state.title}></input>
         {/* <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} /> */}
