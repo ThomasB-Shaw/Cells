@@ -14,8 +14,32 @@ class EditPage extends Component {
     description: '',
     img_url: '',
     date: '',
-    size_type: ''
+    size_type: '',
+    methodList: [],
+    colorList: [],
+    toolList: [],
+    method: '',
+    color: '',
+    brand: '',
+    tool: ''
   }
+
+  // componentDidMount = () => {
+  //   this.setState({
+  //   title: this.props.store.paintingDetails[0].title,
+  //   description: '',
+  //   img_url: '',
+  //   date: '',
+  //   size_type: '',
+  //   methodList: [],
+  //   colorList: [],
+  //   toolList: [],
+  //   method: '',
+  //   color: '',
+  //   brand: '',
+  //   tool: ''
+  //   })
+  // }
 
   handleChange = (event, typeOfKey) => {
     console.log('There was a change!');
@@ -27,7 +51,7 @@ class EditPage extends Component {
 }
 
 submitClick = () => {
-  this.props.dispatch({ type:"ADD_PAINTING", payload: this.state })
+  this.props.dispatch({ type:"EDIT_PAINTING", payload: this.state })
 }
 
 deletePainting = () => {
@@ -60,9 +84,10 @@ deletePainting = () => {
       <div>
         {/* <EditPainting /> */}
         <AddForm handleChange={this.handleChange} state={this.state}/>
-        <Method />
-        <Color />
-        <Tool />
+        <input value={this.state.title}></input>
+        {/* <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+        <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+        <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} /> */}
         {this.props.store.paintingDetails[0] &&
           <button onClick={this.deletePainting}>DELETE Painting</button>
         }

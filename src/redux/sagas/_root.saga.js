@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import paintingsSaga from './paintings.saga';
+import componentsSaga from './components.saga';
 import accountSaga from './account.saga';
 import paintingDetailsSaga from './painting.details.saga';
 
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     paintingsSaga(),
+    componentsSaga(),
     accountSaga(),
     paintingDetailsSaga(),
   ]);
