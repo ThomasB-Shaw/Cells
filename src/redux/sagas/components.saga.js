@@ -14,7 +14,7 @@ function* fetchComponents() {
 function* addComponent(action) {
     console.log(action.payload);
     try {
-      yield axios.post('/api/components', action.payload)
+      yield axios.post(`/api/components`, action.payload, action.id)
     } catch (error) {
       console.log('error in post components', error);
     }
@@ -27,7 +27,6 @@ function* addComponent(action) {
       console.log('ERROR in axios delete components', error);
     }
   }
-  
   
   function* componentsSaga() {
     yield takeLatest('FETCH_COMPONENTS', fetchComponents);

@@ -81,13 +81,13 @@ deletePainting = () => {
   addClick = (event, typeOfKey) => {
     if(typeOfKey === 'method'){
     console.log('There was a add!', typeOfKey);
-    this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.state.method, 'method'], id:this.props.store.paintingDetails[0].painting_id});
+    this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id ,'method', this.state.method]});
       } else if (typeOfKey === 'color') {
         console.log('There was a add!', typeOfKey);
-        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.state.brand, this.state.color, 'color'], id:this.props.store.paintingDetails[0].painting_id});
+        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id ,'color', this.state.brand, this.state.color]});
       } else if (typeOfKey === 'tool') {
         console.log('There was a add!', typeOfKey);
-        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.state.method, 'tool'], id:this.props.store.paintingDetails[0].painting_id});
+        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id , 'tool' , this.state.tool]});
       } else { 
         console.log('Error type of component unknown')
       }
