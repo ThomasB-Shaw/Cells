@@ -65,17 +65,32 @@ deletePainting = () => {
       },
     },
   })
-  .then((value) => {
-    switch (value) {
-      case "delete":
-        swal("Painting Deleted!", "Returning to your account", "success");
-          this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
-          this.props.history.push('/user');
+    .then((value) => {
+      switch (value) {
+        case "delete":
+          swal("Painting Deleted!", "Returning to your account", "success");
+            this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
+            this.props.history.push('/user');
             break;
-      default:
-        break;
-    }
-  });
+        default:
+          break;
+      }
+    });
+  }
+
+  addClick = (event, typeOfKey) => {
+    if(typeOfKey === 'method'){
+    console.log('There was a add!', typeOfKey);
+    this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.state.method, 'method'], id:this.props.store.paintingDetails[0].painting_id});
+      } else if (typeOfKey === 'color') {
+        console.log('There was a add!', typeOfKey);
+        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.state.brand, this.state.color, 'color'], id:this.props.store.paintingDetails[0].painting_id});
+      } else if (typeOfKey === 'tool') {
+        console.log('There was a add!', typeOfKey);
+        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.state.method, 'tool'], id:this.props.store.paintingDetails[0].painting_id});
+      } else { 
+        console.log('Error type of component unknown')
+      }
   }
 
 
@@ -84,9 +99,9 @@ deletePainting = () => {
       <div>
         {/* <EditPainting /> */}
         <AddForm handleChange={this.handleChange} state={this.state}/>
-        {/* <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+        <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
-        <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} /> */}
+        <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         {this.props.store.paintingDetails[0] &&
           <button onClick={this.deletePainting}>DELETE Painting</button>
         }
