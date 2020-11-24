@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+// GET ROUTES
 router.get('/', (req, res) => {
     let queryText = ` SELECT * FROM "component"; `;
     pool.query(queryText)
@@ -13,6 +14,23 @@ router.get('/', (req, res) => {
       });
   });
 
+  router.get('/:id', (req, res) => {
+    const id = req.params.id
+    const componentType = req.body
+    let queryText = ` 
+    SELECT * FROM "painting_component"
+    JOIN "component" ON "component"."id" = "painting_component"."component_id"
+    WHERE "component"."type" = $1 AND "painting_id" = $2; `;
+    pool.query(queryText, [componentType, id])
+      .then((result) => {
+          res.send(result.rows);
+      }).catch((error) =>{
+        console.log(`Error with getPaintingComponent` , error);
+        res.sendStatus(500);
+      });
+  });
+
+  // POST ROUTES
 // Post Adds Component from edit page based on componentType
 router.post('/', (req, res) => {
   console.log(req.body);
@@ -54,6 +72,7 @@ router.post('/', (req, res) => {
   }
 );
 
+// DELETE ROUTES
 router.delete('/:id', (req, res) => {
   // DELETE route code here
   console.log('req.body params', req.params.id);
