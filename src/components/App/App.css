@@ -1,8 +1,8 @@
-html,
+/* html,
 body,
 #react-root {
   height: 100%;
-}
+} */
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,15 +20,15 @@ img {
 Container
 -------------------------------------------------------------------------------- */
 
-.container {
+/* .container {
   padding: 20px;
-}
+} */
 
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
 
-.btn {
+/* .btn {
   display: inline-block;
   padding: 10px 20px;
   border-color: #014041;
@@ -59,10 +59,10 @@ Button
 .btn:hover {
   background-color: #008183;
   text-decoration: none;
-}
+} */
 
 /* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
+/* .btn_asLink {
   padding: 0;
   border-width: 0;
   border-bottom: 1px solid #444;
@@ -76,7 +76,7 @@ Button
   background-color: transparent;
   border-color: #008183;
   color: #008183;
-}
+} */
 
 /* --------------------------------------------------------------------------------
 Alert
@@ -97,7 +97,7 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
-.formPanel {
+/* .formPanel {
   box-sizing: border-box;
   width: 400px;
   max-width: 100%;
@@ -112,4 +112,4 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
-}
+} */
