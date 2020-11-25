@@ -6,6 +6,8 @@ import Method from '../PaintingComponents/Method';
 import Color from '../PaintingComponents/Color';
 import Tool from '../PaintingComponents/Tool';
 import EditMethod from '../EditComponents/EditMethod';
+import EditColor from '../EditComponents/EditColor';
+import EditTool from '../EditComponents/EditTool';
 import swal from 'sweetalert';
 
 class EditPage extends Component {
@@ -41,7 +43,7 @@ class EditPage extends Component {
         [typeOfKey]: event.target.value
     })
     console.log(this.state)
-}
+  }
 
   updatePainting = () => {
     this.props.dispatch({ type:"EDIT_PAINTING", payload: this.state, id: this.props.store.paintingDetails[0].painting_id })
@@ -91,10 +93,9 @@ class EditPage extends Component {
     this.getComponents(); // Not sure why but needs to be dispatch x3 to work dynamically
   }
 
-
   render() {
     return (
-      <div>
+      <div className='editPage'>
         <AddForm handleChange={this.handleChange} state={this.state}/>
         <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <ul>
@@ -105,13 +106,13 @@ class EditPage extends Component {
         <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <ul>
         {this.props.store.componentDetails.colorsReducer.map((color) => {
-          return <li key={color.id}>{color.brand}: {color.name}</li>
+          return < EditColor color={color} getComponents={this.getComponents}/>
         })}
         </ul>
         <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <ul>
         {this.props.store.componentDetails.toolsReducer.map((tool) => {
-          return <li key={tool.id}>{tool.name}</li>
+          return < EditTool tool={tool} getComponents={this.getComponents}/>
         })}
         </ul>
         {this.props.store.paintingDetails[0] &&
