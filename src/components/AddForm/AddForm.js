@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddForm extends Component {
   state = {
@@ -18,36 +19,41 @@ class AddForm extends Component {
         [typeOfKey]: event.target.value
     })
     console.log(this.state)
-}
+  }
 
   render() {
     return (
-      <div>
-        <h1>Add New Painting!</h1>
-        <label htmlFor='title'>
-          Title:
-          <input type='text' placeholder='title' onChange={(event) => this.props.handleChange(event, 'title')}/>
-        </label>
-        <label htmlFor='description'>
-          Description:
-          <input type='text' placeholder='Description' onChange={(event) => this.props.handleChange(event, 'description')}/>
-        </label>
-        <label htmlFor='image_url'>
-          Image URL:
-          <input type='text' placeholder='Image URL' onChange={(event) => this.props.handleChange(event, 'img_url')}/>
-        </label>
-        <br/>
-        <img src={this.props.state.img_url} alt={this.props.state.title}/>
-        <br/>
-        <label htmlFor='date'>
-          Date:
-          <input type='date' onChange={(event) => this.props.handleChange(event, 'date')}/>
-        </label>
-        <form>
-          <label htmlFor='size_type'>
-            Size:
-            <select name='size' id='size' onChange={(event) => this.props.handleChange(event, 'size_type')}>
-            <option value=''></option>
+      <div className='addForm'>
+        <Form>
+          <Row Form>
+            <Col md={6}>
+              <FormGroup>
+                <Label htmlFor='title'>Title:</Label>
+                  <Input type='text' placeholder='title' id='title' value={this.props.state.title} onChange={(event) => this.props.handleChange(event, 'title')}/>
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label htmlFor='image_url'>Image URL:</Label>
+                  <Input type='text' placeholder='Image URL' id='image_url' value={this.props.state.img_url}  onChange={(event) => this.props.handleChange(event, 'img_url')}/>
+              </FormGroup>
+            </Col>
+          </Row>
+          {this.props.state.img_url === '' ?
+          <img  src='https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png' alt='PlaceHolder'/>
+          :
+          <img src={this.props.state.img_url} alt={this.props.state.title} />
+          }
+          <FormGroup>
+          <Label htmlFor='description'>Description:</Label>
+            <Input type='textarea' placeholder='Description' id='description' value={this.props.state.description} onChange={(event) => this.props.handleChange(event, 'description')}/>
+          </FormGroup>
+          <Label htmlFor='date'>Date Made</Label>
+            <Input type='date' id='date' value={this.props.state.date} onChange={(event) => this.props.handleChange(event, 'date')}/>
+          <FormGroup>
+            <Label htmlFor='size_type'>Size:</Label>
+              <Input type='select' name='size' id='size_type' value={this.props.state.size_type} onChange={(event) => this.props.handleChange(event, 'size_type')}>
+              <option value=''></option>
               <option value='5x5'>5x5</option>
               <option value='8x10'>8x10</option>
               <option value='10x20'>10x20</option>
@@ -56,10 +62,10 @@ class AddForm extends Component {
               <option value='15x30'>15x30</option>
               <option value='36x48'>36x48</option>
               <option value='48x60'>48x60</option>
-            </select>
-          </label>
-        </form>
-        <button onClick={this.props.submitClick}>SUBMIT</button>
+              </Input>
+          </FormGroup>
+          <Button color="success" onClick={this.props.submitClick}>SUBMIT</Button>
+        </Form>
       </div>
     )
   }

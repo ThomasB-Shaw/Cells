@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import PaintingGallery from '../PaintingGallery/PaintingGallery';
+import {Jumbotron, Container, Row, Col, Button} from 'reactstrap';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
@@ -13,32 +14,45 @@ class LandingPage extends Component {
     heading: 'Home Gallery!',
   };
 
+  // Fetches 9 Random Paintings to populate Home page, on refresh or load
   componentDidMount = () => {
     this.getPaintings();
   }
 
+  // Dispatch Request to PaintingSaga
   getPaintings = () => {
     this.props.dispatch({type: 'FETCH_PAINTINGS'});
     console.log(this.props.store.paintings);
   }
 
-  log = () => {
-    console.log(this.props.store.paintings)
-  }
-
   render() {
     return (
-      <div className="homeGallery">
-        <h2>{this.state.heading}</h2>
-            <ul>
-              {this.props.store.paintings.map((painting) => {
-                return <li key={painting.id}>
-                  <PaintingGallery painting={painting} history={this.props.history}/>
-                  </li>
-              })}
-            </ul>
-            <button onClick={this.log}>LOG</button>
-      </div>
+    <>
+      <Jumbotron className="homeJumbotron">
+        <Container>
+          <Row>
+            <Col xs="4" className="leftJumbotron">
+
+              <hr className="homeHr"/>
+
+            </Col>
+          </Row>
+          
+        </Container>
+      </Jumbotron>
+        <div className="homeGallery">
+          <Container>
+          <h2>{this.state.heading}</h2>
+              <ul>
+                {this.props.store.paintings.map((painting) => {
+                  return <li key={painting.id}>
+                    <PaintingGallery className='paintingGalleryItem' painting={painting} history={this.props.history}/>
+                    </li>
+                })}
+              </ul>
+          </Container>
+          </div>
+      </>
     );
   }
 }

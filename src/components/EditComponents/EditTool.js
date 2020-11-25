@@ -15,7 +15,11 @@ class EditTool extends Component {
       <div className='toolEditList'>
         <li key={this.props.tool.component_id}>
             {this.props.tool.name}
-            <button onClick={() => this.deleteComponent(this.props.tool.component_id)}>DELETE</button>
+            { !this.props.state.view ?
+          <button onClick={() => this.deleteComponent(this.props.color.component_id)}>DELETE</button>
+          :
+          <p></p>
+          }
         </li>
       </div>
     )

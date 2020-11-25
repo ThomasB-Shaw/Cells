@@ -6,6 +6,7 @@ function* fetchPaintingDetails(action) {
   try {
     const paintingDetailsResponse = yield axios.get(`/api/paintingDetails/${action.payload}`);
     yield put({type: 'SET_PAINTING_DETAILS', payload: paintingDetailsResponse.data})
+    yield action.history.push('/details')
     } catch(err) {
         console.log('err fetching painting details', err);
     }

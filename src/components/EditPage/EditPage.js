@@ -12,11 +12,11 @@ import swal from 'sweetalert';
 
 class EditPage extends Component {
   state = {
-    title: '',
-    description: '',
-    img_url: '',
-    date: '',
-    size_type: '',
+    title: this.props.store.paintingDetails[0].title,
+    description: this.props.store.paintingDetails[0].description,
+    img_url: this.props.store.paintingDetails[0].img_url,
+    date: this.props.store.paintingDetails[0].date,
+    size_type: this.props.store.paintingDetails[0].size_type,
     methodList: [],
     colorList: [],
     toolList: [],
@@ -96,23 +96,24 @@ class EditPage extends Component {
   render() {
     return (
       <div className='editPage'>
+        <h2>Edit Painting!</h2>
         <AddForm handleChange={this.handleChange} state={this.state}/>
         <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <ul>
         {this.props.store.componentDetails.methodsReducer.map((method) => {
-          return < EditMethod method={method} getComponents={this.getComponents}/>
+          return < EditMethod state={this.state} method={method} getComponents={this.getComponents}/>
         })}
         </ul>
         <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <ul>
         {this.props.store.componentDetails.colorsReducer.map((color) => {
-          return < EditColor color={color} getComponents={this.getComponents}/>
+          return < EditColor state={this.state} color={color} getComponents={this.getComponents}/>
         })}
         </ul>
         <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
         <ul>
         {this.props.store.componentDetails.toolsReducer.map((tool) => {
-          return < EditTool tool={tool} getComponents={this.getComponents}/>
+          return < EditTool state={this.state} tool={tool} getComponents={this.getComponents}/>
         })}
         </ul>
         {this.props.store.paintingDetails[0] &&

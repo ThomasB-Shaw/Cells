@@ -13,8 +13,14 @@ class EditColor extends Component {
   render() {
     return (
       <div className='colorEditList'>
-        <li key={this.props.color.component_id}>{this.props.color.brand}: {this.props.color.name}</li>
-        <button onClick={() => this.deleteComponent(this.props.color.component_id)}>DELETE</button>
+        <li key={this.props.color.component_id}>
+          {this.props.color.brand}: {this.props.color.name}
+          { !this.props.state.view ?
+          <button onClick={() => this.deleteComponent(this.props.color.component_id)}>DELETE</button>
+          :
+          <p></p>
+          }
+        </li>
       </div>
     )
   }

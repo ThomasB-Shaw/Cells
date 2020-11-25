@@ -6,8 +6,7 @@ import './PaintingGallery.css';
 class PaintingGallery extends Component {
   // Upon click of movie poster will take user to the details page to display that movies Title, Poster, Description and Genres
   paintingClick = () => {
-      this.props.history.push('/details');
-      this.props.dispatch({ type: 'FETCH_PAINTING_DETAILS', payload: this.props.painting.id});
+      this.props.dispatch({ type: 'FETCH_PAINTING_DETAILS', payload: this.props.painting.id , history: this.props.history});
   }
 
   render() {

@@ -9,6 +9,27 @@ const AboutPage = () => (
   <div className="container">
     <div>
       <p>This about page is for anyone to read!</p>
+      SCRAP CODE
+      {/* <ul id='listMethodDetails'>
+          {this.props.store.paintingDetails.map(component => {
+            {return component.type === 'method' ?
+              <div className='methodGroup'>
+                <li key={component.id}>{component.name}</li>
+              </div>
+              : component.type === 'color' ?
+                <div className='colorGroup'>
+                  <li key={component.id}>{component.brand}: {component.name}</li>
+                </div>
+              : component.type === 'tool' ?
+                <div className='toolGroup'>
+                  <li key={component.id}>{component.name}</li>
+                </div>
+              :
+                <p>How did we get here chief?</p>
+            }
+          })}
+        </ul> */}
+
     </div>
   </div>
 );

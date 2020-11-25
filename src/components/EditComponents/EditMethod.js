@@ -15,7 +15,11 @@ class EditMethod extends Component {
       <div className='methodEditList'>
         <li key={this.props.method.id}>
             {this.props.method.name}
-            <button onClick={() => this.deleteComponent(this.props.method.id)}>DELETE</button>
+            { !this.props.state.view ?
+          <button onClick={() => this.deleteComponent(this.props.color.component_id)}>DELETE</button>
+          :
+          <p></p>
+          }
         </li>
       </div>
     )

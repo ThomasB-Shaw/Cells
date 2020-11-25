@@ -1,0 +1,14 @@
+
+.loginJumbotron {
+    background-image: url('../../Images/instRoom.jpg');
+    background-size: cover;
+    background-position: center;
+
+    margin: 0;
+    height: 86.4vh;
+    border-radius: 0;
+}
+
+.formPanel {
+    margin: auto;
+}
