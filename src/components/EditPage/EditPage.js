@@ -8,6 +8,7 @@ import Tool from '../PaintingComponents/Tool';
 import EditMethod from '../EditComponents/EditMethod';
 import EditColor from '../EditComponents/EditColor';
 import EditTool from '../EditComponents/EditTool';
+import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import swal from 'sweetalert';
 
 class EditPage extends Component {
@@ -120,7 +121,7 @@ class EditPage extends Component {
           <button onClick={this.deletePainting}>DELETE Painting</button>
         }
         {this.props.store.paintingDetails[0] &&
-          <button onClick={this.updatePainting}>SAVE CHANGES</button>
+          <Button onClick={this.updatePainting}>SAVE CHANGES</Button>
         }
       </div>
     )

@@ -13,3 +13,17 @@
 .colorGroup{
     float: center;
 }
+
+.r1c2 {
+    width: 100% !important;
+    height: 100% !important;
+    text-align: right;
+}
+
+.componentTitle{
+    text-align: left;
+}
+
+.listComponent{
+    text-align: left;
+}

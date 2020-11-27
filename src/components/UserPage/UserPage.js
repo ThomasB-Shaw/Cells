@@ -21,9 +21,9 @@ class UserPage extends Component {
         <LogOutButton className="log-in" />
         <ul>
         {this.props.store.userAccount.map((painting) => {
-                return <li key={painting.id}>
+                return <>
                   <PaintingGallery painting={painting} history={this.props.history} />
-                  </li>
+                  </>
               })}
         </ul>
       </div>

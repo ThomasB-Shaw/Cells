@@ -51,6 +51,7 @@ function* addComponent(action) {
 function* deleteComponent(action) {
   try {
     yield axios.delete(`/api/components/${action.payload}`);
+    // yield this.props.dispatch({type: 'FETCH_METHODS', id: this.props.store.paintingDetails[0].painting_id});
   } catch (error) {
     console.log('ERROR in axios delete components', error);
   }

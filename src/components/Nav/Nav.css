@@ -14,7 +14,7 @@
 }
 
 .nav-link {
-  float: left;
+  float: right;
   color: #f2f2f2;
   background-color: #29268C;
   text-align: center;
@@ -24,15 +24,54 @@
 
   /* these last two make the logout button in
   the nav bar look like another link */
-  border:none;
+   border:none;
   cursor: pointer;
   outline:0;
-}
+} 
 
-.nav-link:hover {
+ .nav-link:hover {
   background-color: #403BD9;
 }
 
 .nav-right {
   float: right;
+} 
+/* 
+.nav-right {
+  float: right;
 }
+
+
+.navbarBrand {
+  color: black;
+}
+
+.navbarBrand:hover {
+  color: #606060;
+}
+
+.nav-link {
+  color: black;
+  text-align: left;
+}
+
+.nav-link:hover {
+  color: rgb(160,118,177);
+}
+
+.logo {
+  height: 50px;
+}
+
+.mySongsBtn {
+    color: #fff;
+    background-color: rgb(160,118,177);
+    background-color: cutom-color;
+    border-color: rgb(160,118,177);
+    border-color: cutom-cor;
+}
+
+.mySongsBtn:hover {
+  background-color: rgb(143, 110, 157);
+  border-color: rgb(143, 110, 157);
+} */

@@ -29,27 +29,18 @@ class LandingPage extends Component {
     return (
     <>
       <Jumbotron className="homeJumbotron">
-        <Container>
-          <Row>
-            <Col xs="4" className="leftJumbotron">
 
-              <hr className="homeHr"/>
-
-            </Col>
-          </Row>
-          
-        </Container>
       </Jumbotron>
         <div className="homeGallery">
           <Container>
           <h2>{this.state.heading}</h2>
-              <ul>
+              <div className="imgFluid">
                 {this.props.store.paintings.map((painting) => {
-                  return <li key={painting.id}>
+                  return <>
                     <PaintingGallery className='paintingGalleryItem' painting={painting} history={this.props.history}/>
-                    </li>
+                    </>
                 })}
-              </ul>
+              </div>
           </Container>
           </div>
       </>

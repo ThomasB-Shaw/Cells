@@ -64,7 +64,6 @@ class AddForm extends Component {
               <option value='48x60'>48x60</option>
               </Input>
           </FormGroup>
-          <Button color="success" onClick={this.props.submitClick}>SUBMIT</Button>
         </Form>
       </div>
     )

@@ -41,7 +41,7 @@ class AddPage extends Component {
       swal("Warning!", "Please ensure that you have all required fields filled in!", "warning");
     } else {
       this.props.dispatch({ type:"ADD_PAINTING", payload: this.state });
-      swal("Success!", "Painting was added, Returning to your page", "Success");
+      swal("Success!", "Painting was added, Returning to your page", "success");
       this.setState ({
         title: '',
         description: '',
@@ -91,6 +91,7 @@ addClick = (event, typeOfKey) => {
           <Method  state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
           <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
           <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
+          <Button color="success" onClick={this.submitClick}>SUBMIT</Button>
       </div>
     )
   }

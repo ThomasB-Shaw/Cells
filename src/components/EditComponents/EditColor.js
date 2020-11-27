@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class EditColor extends Component {
 
@@ -16,10 +17,10 @@ class EditColor extends Component {
         <li key={this.props.color.component_id}>
           {this.props.color.brand}: {this.props.color.name}
           { !this.props.state.view ?
-          <button onClick={() => this.deleteComponent(this.props.color.component_id)}>DELETE</button>
-          :
-          <p></p>
-          }
+            <Button color="danger" size="sm" onClick={() => this.deleteComponent(this.props.color.component_id)}>DELETE</Button>
+            :
+            <p></p>
+            }
         </li>
       </div>
     )
