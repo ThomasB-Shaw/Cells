@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import {Button} from 'reactstrap';
 
 class Color extends Component {
   state = {
@@ -28,10 +29,12 @@ addClick = () => {
         <label htmlFor='color'>
           Brand:
           <input type='text' placeholder='Brand' onChange={(event) => this.props.handleChange(event, 'brand')}/>
+          <br/>
           Color:
           <input type='text' placeholder='Color' onChange={(event) => this.props.handleChange(event, 'color')}/>
         </label>
-        <button value={this.props.tool} onClick={(value) => this.props.addClick(value, 'color')}>Add</button>
+        <br/>
+        <Button size='sm' value={this.props.tool} onClick={(value) => this.props.addClick(value, 'color')}>Add</Button>
         <ul>
           {this.props.state.colorList.map((color) => {
             return <li key={color[1]}> Brand: {color[0]} Color: {color[1]} </li>
