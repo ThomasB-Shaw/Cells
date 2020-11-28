@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import {Button} from 'reactstrap';
 
 class Method extends Component {
   state = {
@@ -35,7 +36,7 @@ class Method extends Component {
           Method:
           <input type='text' placeholder='Method'  onChange={(event) => this.props.handleChange(event, 'method')}/>
         </label>
-        <button value={this.props.method} onClick={(value) => this.props.addClick(value, 'method')}>Add</button>
+        <Button size='sm' value={this.props.method} onClick={(value) => this.props.addClick(value, 'method')}>Add</Button>
         <ul>
           {this.props.state.methodList.map((method) => {
             return <li key={method}> {method} </li>

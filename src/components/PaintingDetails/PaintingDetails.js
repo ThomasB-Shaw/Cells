@@ -26,8 +26,7 @@ class PaintingDetails extends Component {
 
   // Returns user to Gallery Home Page on click of Return to Gallery button
   returnToHome = () => {
-      // this.props.history.push('/home');
-    this.getComponents();
+      this.props.history.push('/home');
   }
 
   editClick = () => {
@@ -110,11 +109,16 @@ class PaintingDetails extends Component {
               </div>
             </Col>
           </Row>
-          <Button id='returnDetail' onClick={this.returnToHome}>Return to Home</Button>
-
-          {/* this.props.store.paintingDetails[0].user_id === this.props.store.user.id ? */}
-          <Button onClick={this.editClick}>Edit Painting</Button>
-
+          <Row>
+            <Col>
+              <Button id='returnDetail' onClick={this.returnToHome}>Return to Home</Button>
+            </Col>
+            <Col></Col>
+            <Col>
+            {/* this.props.store.paintingDetails[0].user_id === this.props.store.user.id ? */}
+            <Button onClick={this.editClick}>Edit Painting</Button>
+            </Col>
+          </Row>
         </div>
       </Container>
     );

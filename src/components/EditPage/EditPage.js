@@ -8,7 +8,8 @@ import Tool from '../PaintingComponents/Tool';
 import EditMethod from '../EditComponents/EditMethod';
 import EditColor from '../EditComponents/EditColor';
 import EditTool from '../EditComponents/EditTool';
-import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import './EditPage.css';
+import {Col, Row, Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import swal from 'sweetalert';
 
 class EditPage extends Component {
@@ -97,32 +98,49 @@ class EditPage extends Component {
   render() {
     return (
       <div className='editPage'>
-        <h2>Edit Painting!</h2>
-        <AddForm handleChange={this.handleChange} state={this.state}/>
-        <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
-        <ul>
-        {this.props.store.componentDetails.methodsReducer.map((method) => {
-          return < EditMethod state={this.state} method={method} getComponents={this.getComponents}/>
-        })}
-        </ul>
-        <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
-        <ul>
-        {this.props.store.componentDetails.colorsReducer.map((color) => {
-          return < EditColor state={this.state} color={color} getComponents={this.getComponents}/>
-        })}
-        </ul>
-        <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
-        <ul>
-        {this.props.store.componentDetails.toolsReducer.map((tool) => {
-          return < EditTool state={this.state} tool={tool} getComponents={this.getComponents}/>
-        })}
-        </ul>
-        {this.props.store.paintingDetails[0] &&
-          <button onClick={this.deletePainting}>DELETE Painting</button>
-        }
-        {this.props.store.paintingDetails[0] &&
-          <Button onClick={this.updatePainting}>SAVE CHANGES</Button>
-        }
+        <Container>
+          <h2>Edit Painting!</h2>
+          <AddForm handleChange={this.handleChange} state={this.state}/>
+          <Row>
+            <Col className='addComponent' >
+              <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+              <ul>
+                {this.props.store.componentDetails.methodsReducer.map((method) => {
+                  return < EditMethod state={this.state} method={method} getComponents={this.getComponents}/>
+                })}
+              </ul>
+            </Col>
+            <Col className='addComponent'>
+              <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+              <ul>
+                {this.props.store.componentDetails.colorsReducer.map((color) => {
+                  return < EditColor state={this.state} color={color} getComponents={this.getComponents}/>
+                })}
+              </ul>
+            </Col>
+            <Col className='addComponent'>
+              <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+              <ul>
+                {this.props.store.componentDetails.toolsReducer.map((tool) => {
+                  return < EditTool state={this.state} tool={tool} getComponents={this.getComponents}/>
+                })}
+              </ul>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+          {this.props.store.paintingDetails[0] &&
+            <Button color='danger' onClick={this.deletePainting}>DELETE Painting</Button>
+          }
+          </Col>
+          <Col></Col>
+          <Col>
+          {this.props.store.paintingDetails[0] &&
+            <Button color='success' onClick={this.updatePainting}>SAVE CHANGES</Button>
+          }
+            </Col>
+          </Row>
+        </Container>
       </div>
     )
   }
