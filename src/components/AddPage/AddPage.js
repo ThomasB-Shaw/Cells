@@ -11,7 +11,6 @@ import swal from 'sweetalert';
 import ReactS3 from 'react-s3';
 require('dotenv').config();
 
-const REACT_APP_GIT_HASH = process.env
 
 const config = {
     bucketName: 'solocells-images',
@@ -48,7 +47,7 @@ class AddPage extends Component {
         [typeOfKey]: event.target.value
     })
     console.log(this.state)
-    console.log(`${REACT_APP_GIT_HASH.ACCESS_KEY_ID}`)
+    console.log(process.env.ACCESS_KEY_ID)
   }
 
   upload = (e) => {
