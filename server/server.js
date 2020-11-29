@@ -10,9 +10,9 @@ const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
 //CORS
-app.use(cors())
+app.use(cors());
 
-// Route includes
+// Route includes-  
 const userRouter = require('./routes/user.router');
 const paintingsRouter= require('./routes/paintings.router');
 const paintingDetailsRouter = require('./routes/painting.details.router');

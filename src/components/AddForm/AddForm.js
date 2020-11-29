@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import ReactS3 from 'react-s3'
-
-
-const config = {
-    bucketName: 'solocells-images',
-    dirName: 'photos', /* optional */
-    region: 'us-east-2',
-    accessKeyId: `${process.env.ACCESS_KEY_ID}`,
-    secretAccessKey: `${process.env.SECRET_ACCESS_KEY}`,
-}
 
 class AddForm extends Component {
   state = {
@@ -29,22 +19,6 @@ class AddForm extends Component {
         [typeOfKey]: event.target.value
     })
     console.log(this.state)
-  }
-
-  upload = (e) => {
-    console.log(e.target.files[0]);
-    ReactS3.uploadFile( e.target.files[0], config)
-    .then((data) => {
-      console.log(data);
-      console.log(data.location)
-      this.setState({
-        ...this.state,
-        img_url: data.location
-      });
-    }).catch((err) => {
-      console.log('Error in upload', err);
-      alert(err);
-    })
   }
 
   render() {
