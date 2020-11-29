@@ -9,15 +9,14 @@ import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './AddPage.css';
 import swal from 'sweetalert';
 import ReactS3 from 'react-s3';
-require('dotenv').config();
 
 
 const config = {
     bucketName: 'solocells-images',
     dirName: 'photos', /* optional */
     region: 'us-east-2',
-    accessKeyId: `${process.env.ACCESS_KEY_ID}`,
-    secretAccessKey: `${process.env.SECRET_ACCESS_KEY}`,
+    accessKeyId: `${process.env.REACT_APP_ACCESS_KEY_ID}`,
+    secretAccessKey: `${process.env.REACT_APP_SECRET_ACCESS_KEY}`,
 }
 
 // accessKeyId: `${process.env.ACCESS_KEY_ID}`,
@@ -47,7 +46,7 @@ class AddPage extends Component {
         [typeOfKey]: event.target.value
     })
     console.log(this.state)
-    console.log(process.env.ACCESS_KEY_ID)
+    console.log(process.env.REACT_APP_ACCESS_KEY_ID)
   }
 
   upload = (e) => {

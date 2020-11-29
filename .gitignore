@@ -65,11 +65,4 @@ typings/
 .env
 
 # ignore package-lock as it complicates merging
-<<<<<<< HEAD
-package-lock.json
 
-# KEYS
-key.js
-=======
-package-lock.json
->>>>>>> parent of 835c45f... TEST KEY VEIW
