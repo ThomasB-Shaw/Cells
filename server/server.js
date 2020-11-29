@@ -1,5 +1,6 @@
 
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -7,6 +8,9 @@ const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
 
 const passport = require('./strategies/user.strategy');
+
+//CORS
+app.use(cors())
 
 // Route includes
 const userRouter = require('./routes/user.router');
