@@ -25,35 +25,26 @@ class AddForm extends Component {
     return (
       <div className='addForm'>
         <Form>
-          <Row Form>
-            <Col md={6}>
-              <FormGroup>
-                <Label htmlFor='title'>Title:</Label>
-                  <Input type='text' placeholder='title' id='title' value={this.props.state.title} onChange={(event) => this.props.handleChange(event, 'title')}/>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label htmlFor='image_url'>Image URL:</Label>
-                  <Input type='file' placeholder='Image URL' id='image_url'  onChange={this.props.upload}/>
+          <Row>
+            <Col>
+              <FormGroup className='formTitle'>
+                <Label className='componentHeader' htmlFor='title'>Title:</Label>
+                  <Input type='text' placeholder='Title' id='title' value={this.props.state.title} onChange={(event) => this.props.handleChange(event, 'title')}/>
               </FormGroup>
             </Col>
           </Row>
-          {this.props.state.img_url === '' ?
-          <img  src='https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png' alt='PlaceHolder'/>
-          :
-          <img src={this.props.state.img_url} alt={this.props.state.title} />
-          }
-          <FormGroup>
-          <Label htmlFor='description'>Description:</Label>
-            <Input type='textarea' placeholder='Description' id='description' value={this.props.state.description} onChange={(event) => this.props.handleChange(event, 'description')}/>
-          </FormGroup>
-          <Label htmlFor='date'>Date Made</Label>
-            <Input type='date' id='date' value={this.props.state.date} onChange={(event) => this.props.handleChange(event, 'date')}/>
-          <FormGroup>
-            <Label htmlFor='size_type'>Size:</Label>
-              <Input type='select' name='size' id='size_type' value={this.props.state.size_type} onChange={(event) => this.props.handleChange(event, 'size_type')}>
-              <option value=''></option>
+          <Row>
+            <Col>
+            <FormGroup className='sizeDate'>
+              <Label className='componentHeader' htmlFor='date'>Date Made:</Label>
+              <Input type='date' id='date' size='small' value={this.props.state.date} onChange={(event) => this.props.handleChange(event, 'date')}/>
+            </FormGroup>
+            </Col>
+            <Col>
+          <FormGroup className='sizeDate'>
+            <Label className='componentHeader' htmlFor='size_type'>Size:</Label>
+            <Input type='select' name='size' id='size_type' size='small' value={this.props.state.size_type} onChange={(event) => this.props.handleChange(event, 'size_type')}>
+              <option value=''>Select Size</option>
               <option value='5x5'>5x5</option>
               <option value='5x7'>5x7</option>
               <option value='8x8'>8x8</option>
@@ -80,8 +71,37 @@ class AddForm extends Component {
               <option value='36x48'>36x48</option>
               <option value='48x48'>48x48</option>
               <option value='48x60'>48x60</option>
-              </Input>
+            </Input>
           </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col></Col>
+            <Col>
+              <FormGroup className='imageUpload'>
+                <Label className='componentHeader' htmlFor='image_url'>Image URL:</Label>
+                <Input type='file' placeholder='Image URL' id='image_url'  onChange={this.props.upload}/>
+              </FormGroup>
+            </Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <Col>
+              {this.props.state.img_url === '' ?
+              <img  src='https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png' alt='PlaceHolder'/>
+              :
+              <img src={this.props.state.img_url} alt={this.props.state.title} />
+              }
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup className='formLine'>
+                <Label className='componentHeader' htmlFor='description'>Description:</Label>
+                <Input type='textarea' placeholder='Description' id='description' value={this.props.state.description} onChange={(event) => this.props.handleChange(event, 'description')}/>
+              </FormGroup >
+            </Col>
+          </Row>
         </Form>
       </div>
     )

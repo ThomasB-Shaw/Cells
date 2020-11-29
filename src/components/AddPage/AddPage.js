@@ -5,7 +5,7 @@ import AddForm from '../AddForm/AddForm';
 import Method from '../PaintingComponents/Method';
 import Color from '../PaintingComponents/Color';
 import Tool from '../PaintingComponents/Tool';
-import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Col, Row, Button, Container } from 'reactstrap';
 import './AddPage.css';
 import swal from 'sweetalert';
 import ReactS3 from 'react-s3';
@@ -46,7 +46,6 @@ class AddPage extends Component {
         [typeOfKey]: event.target.value
     })
     console.log(this.state)
-    console.log(process.env.REACT_APP_ACCESS_KEY_ID)
   }
 
   upload = (e) => {
@@ -116,12 +115,26 @@ addClick = (event, typeOfKey) => {
   render() {
     return (
       <div className='addPage'>
-          <h2>Add New Painting!</h2>
-          <AddForm state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history} upload={this.upload}/>
-          <Method  state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
-          <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
-          <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
-          <Button color="success" onClick={this.submitClick}>SUBMIT</Button>
+          <h2>Add A New Painting!</h2>
+          <Container className='addForm'>
+            <Row>
+              <Col>
+              <AddForm state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history} upload={this.upload}/>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Method  state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
+              </Col>
+              <Col>
+                <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
+              </Col>
+              <Col>
+                <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
+              </Col>
+            </Row>
+            <Button className='addNewPainting' color="success" onClick={this.submitClick}>SUBMIT</Button>
+          </Container>
       </div>
     )
   }

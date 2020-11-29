@@ -16,7 +16,7 @@ class EditPage extends Component {
   state = {
     title: this.props.store.paintingDetails[0].title,
     description: this.props.store.paintingDetails[0].description,
-    img_url: this.props.store.paintingDetails[0].img_url,
+    img_url: this.props.store.paintingDetails[0].image_url,
     date: this.props.store.paintingDetails[0].date,
     size_type: this.props.store.paintingDetails[0].size_type,
     methodList: [],
@@ -98,7 +98,7 @@ class EditPage extends Component {
   render() {
     return (
       <div className='editPage'>
-        <Container>
+        <Container className='addForm'>
           <h2>Edit Painting!</h2>
           <AddForm handleChange={this.handleChange} state={this.state}/>
           <Row>
