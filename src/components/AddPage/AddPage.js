@@ -15,8 +15,8 @@ const config = {
     bucketName: 'solocells-images',
     dirName: 'photos', /* optional */
     region: 'us-east-2',
-    accessKeyId: 'AKIAJGC2QS2JBK2BDBKQ',
-    secretAccessKey: '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',
+    accessKeyId: 'KEY WAS HERE',
+    secretAccessKey: 'SECRET KEY WAS HERE',
 }
 
 class AddPage extends Component {
