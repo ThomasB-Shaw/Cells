@@ -4,6 +4,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
+import S3FileUpload from 'react-s3'
+
+
 
 // BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.min.css';

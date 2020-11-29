@@ -113,7 +113,7 @@ router.post('/', (req, res) => {
         INSERT INTO "component" ("name", "brand" , "type")
         VALUES ($1, $2, 'color')
         RETURNING "id";`
-        pool.query(insertColorQuery, [color[0], color[1]])
+        pool.query(insertColorQuery, [color[1], color[0]])
         .then(colorResult => {
             console.log('Results.rows deal', colorResult.rows[0].id)
             let createdPaintingId = result.rows[0].id
