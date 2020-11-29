@@ -35,7 +35,8 @@ class AddPage extends Component {
     method: '',
     color: '',
     brand: '',
-    tool: ''
+    tool: '',
+    loading: false
   }
 
 
@@ -50,13 +51,18 @@ class AddPage extends Component {
 
   upload = (e) => {
     console.log(e.target.files[0]);
+    this.setState({
+      ...this.state,
+      loading: true
+    })
     ReactS3.uploadFile( e.target.files[0], config)
     .then((data) => {
       console.log(data);
       console.log(data.location)
       this.setState({
         ...this.state,
-        img_url: data.location
+        img_url: data.location,
+        loading: false
       });
     }).catch((err) => {
       console.log('Error in upload', err);
@@ -83,7 +89,8 @@ class AddPage extends Component {
         method: '',
         color: '',
         brand: '',
-        tool: ''
+        tool: '',
+        loading: false
       })
     this.props.history.push('/user');
     }

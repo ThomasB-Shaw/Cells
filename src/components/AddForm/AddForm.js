@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Col, Row, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 
 class AddForm extends Component {
   state = {
@@ -85,6 +85,13 @@ class AddForm extends Component {
             </Col>
             <Col></Col>
           </Row>
+          <div className='spinner'>
+          {this.props.state.loading === true ? 
+          <Spinner color="primary"/>
+          :
+            <p></p>
+          }
+          </div>
           <Row>
             <Col>
               {this.props.state.img_url === '' ?

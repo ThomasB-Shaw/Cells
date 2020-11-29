@@ -44,3 +44,12 @@ img {
 .sizeDate{
     text-align: left;
 }
+
+#componentBtn{
+    text-align: right;
+}
+
+.spinner{
+    text-align: center;
+    padding-bottom: 5px;
+}
