@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import ReactS3 from 'react-s3'
+
+
+const config = {
+    bucketName: 'solocells-images',
+    dirName: 'photos', /* optional */
+    region: 'us-east-2',
+    accessKeyId: 'AKIAJGC2QS2JBK2BDBKQ',
+    secretAccessKey: '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',
+}
 
 class AddForm extends Component {
   state = {
@@ -21,6 +31,22 @@ class AddForm extends Component {
     console.log(this.state)
   }
 
+  upload = (e) => {
+    console.log(e.target.files[0]);
+    ReactS3.uploadFile( e.target.files[0], config)
+    .then((data) => {
+      console.log(data);
+      console.log(data.location)
+      this.setState({
+        ...this.state,
+        img_url: data.location
+      });
+    }).catch((err) => {
+      console.log('Error in upload', err);
+      alert(err);
+    })
+  }
+
   render() {
     return (
       <div className='addForm'>
@@ -35,7 +61,7 @@ class AddForm extends Component {
             <Col md={6}>
               <FormGroup>
                 <Label htmlFor='image_url'>Image URL:</Label>
-                  <Input type='text' placeholder='Image URL' id='image_url' value={this.props.state.img_url}  onChange={(event) => this.props.handleChange(event, 'img_url')}/>
+                  <Input type='file' placeholder='Image URL' id='image_url'  onChange={this.props.upload}/>
               </FormGroup>
             </Col>
           </Row>

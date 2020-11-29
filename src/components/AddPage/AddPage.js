@@ -8,6 +8,16 @@ import Tool from '../PaintingComponents/Tool';
 import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './AddPage.css';
 import swal from 'sweetalert';
+import ReactS3 from 'react-s3'
+
+
+const config = {
+    bucketName: 'solocells-images',
+    dirName: 'photos', /* optional */
+    region: 'us-east-2',
+    accessKeyId: 'AKIAJGC2QS2JBK2BDBKQ',
+    secretAccessKey: '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',
+}
 
 class AddPage extends Component {
   state = {
@@ -33,6 +43,22 @@ class AddPage extends Component {
         [typeOfKey]: event.target.value
     })
     console.log(this.state)
+  }
+
+  upload = (e) => {
+    console.log(e.target.files[0]);
+    ReactS3.uploadFile( e.target.files[0], config)
+    .then((data) => {
+      console.log(data);
+      console.log(data.location)
+      this.setState({
+        ...this.state,
+        img_url: data.location
+      });
+    }).catch((err) => {
+      console.log('Error in upload', err);
+      alert(err);
+    })
   }
 
   // Checks if all values as properly filled in, if so confirms that painting was posted.  Or warns that all data is not filled in.
@@ -87,7 +113,7 @@ addClick = (event, typeOfKey) => {
     return (
       <div className='addPage'>
           <h2>Add New Painting!</h2>
-          <AddForm state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history}/>
+          <AddForm state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history} upload={this.upload}/>
           <Method  state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
           <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
           <Tool state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>

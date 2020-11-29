@@ -4,9 +4,15 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
-import S3FileUpload from 'react-s3'
+// import S3FileUpload from 'react-s3'
 
-
+// const config = {
+//     bucketName: 'cells-images',
+//     dirName: 'photos', /* optional */
+//     region: 'us-east-2',
+//     accessKeyId: 'AKIAIZSP4QVFHUFIHBOQ',
+//     secretAccessKey: 'p3s4E+MOrz08hp6upl+0u/hDX0WHdeuQE/obM7Pa+DEkgDxe6veFosBT7eUgEXAMPLE',
+// }
 
 // BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.min.css';
