@@ -8,7 +8,6 @@ class EditColor extends Component {
   deleteComponent = (id) => {
     console.log('Component ID', id)
     this.props.dispatch({type: 'DELETE_COMPONENT', payload: id, getComponents: this.props.getComponents});
-    this.props.getComponents();
   }
 
   render() {

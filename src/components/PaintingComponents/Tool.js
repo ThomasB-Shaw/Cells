@@ -27,9 +27,11 @@ addClick = () => {
       <div className='paintingComponent'>
         <label htmlFor='method'>
           Tool:
-          <input type='text' placeholder='Tool' onChange={(event) => this.props.handleChange(event, 'tool')}/>
+          <br/>
+          <input type='text' placeholder='Tool' value={this.props.state.tool} onChange={(event) => this.props.handleChange(event, 'tool')}/>
         </label>
-        <Button size='sm' value={this.props.tool} onClick={(value) => this.props.addClick(value, 'tool')}>Add</Button>
+        <br/>
+        <Button size='sm' value={this.props.tool} className='componentBtn' onClick={(value) => this.props.addClick(value, 'tool')}>Add</Button>
         <ul>
           {this.props.state.toolList.map((tool) => {
             return <li key={tool}> {tool} </li>

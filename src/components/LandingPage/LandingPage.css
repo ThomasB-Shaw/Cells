@@ -21,10 +21,6 @@ img {
   padding: 10px;
 }
 
-ul{
-  list-style-type: none;
-}
-
 .paintingGalleryItem {
   display: inline-block;
   margin-left: 5px;
