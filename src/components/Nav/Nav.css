@@ -5,11 +5,14 @@
     color: #f2f2f2;
     padding-left: 10px;
     float: left;
+    margin-top: 30%;
 }
 
 .nav {
   margin: 0 0 30px;
   background-color: #29268C;
+  background-image: url(https://shuswapculture.ca/wp-content/uploads/2019/08/Fluid-Art.jpg);
+  background-position: center;
   overflow: hidden;
 }
 
@@ -21,6 +24,7 @@
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
+  
 
   /* these last two make the logout button in
   the nav bar look like another link */
@@ -34,7 +38,7 @@
 }
 
 .nav-right {
-  float: right;
+  margin-left: 70%;
 } 
 /* 
 .nav-right {

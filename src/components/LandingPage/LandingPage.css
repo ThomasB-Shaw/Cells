@@ -14,11 +14,17 @@ img {
 }
 
 .homeGallery{
+  text-align: center;
   display: inline-block;
   /* background-image: url(https://previews.123rf.com/images/cerber82/cerber821809/cerber82180900342/107929833-fluid-art-abstract-colorful-background-wallpaper-mixing-paints-modern-art-marble-texture.jpg);
   background-size: cover; */
+  background-color: #222222;
   width: 100%;
   padding: 10px;
+  padding-bottom: 15px;
+  border-radius: 50px;
+  margin-left: 10%;
+  margin-right: 5%;
 }
 
 .paintingGalleryItem {

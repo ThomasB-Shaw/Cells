@@ -29,8 +29,8 @@ class LandingPage extends Component {
       <>
         <Jumbotron className="homeJumbotron">
         </Jumbotron>
-        <div className="homeGallery">
-          <Container>
+        <div >
+          <Container className="homeGallery">
             <h2>{this.state.heading}</h2>
               <div className="imgFluid">
                 {this.props.store.paintings.map((painting) => {
