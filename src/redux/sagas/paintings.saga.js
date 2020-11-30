@@ -25,6 +25,7 @@ function* addPainting(action) {
 function* deletePainting(action) {
   try {
     yield axios.delete(`/api/paintings/${action.payload}`);
+    yield action.history.push('/user');
   } catch (error) {
     console.log('ERROR in axios delete painting', error);
   }

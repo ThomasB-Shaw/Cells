@@ -28,7 +28,7 @@ class AddForm extends Component {
           <Row>
             <Col>
               <FormGroup className='formTitle'>
-                <Label className='componentHeader' htmlFor='title'>Title:</Label>
+                <Label onClick={this.props.secretFillIn}className='componentHeader' htmlFor='title'>Title:</Label>
                   <Input type='text' placeholder='Title' id='title' value={this.props.state.title} onChange={(event) => this.props.handleChange(event, 'title')}/>
               </FormGroup>
             </Col>

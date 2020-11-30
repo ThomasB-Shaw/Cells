@@ -96,8 +96,7 @@ class EditPage extends Component {
         switch (value) {
           case "delete":
             swal("Painting Deleted!", "Returning to your account", "success");
-              this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id});
-              this.props.history.push('/user');
+              this.props.dispatch({type: 'DELETE_PAINTING', payload: this.props.store.paintingDetails[0].painting_id, history:this.props.history});
               break;
           default:
             break;

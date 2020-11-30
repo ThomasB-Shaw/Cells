@@ -33,7 +33,8 @@ class AddPage extends Component {
     color: '',
     brand: '',
     tool: '',
-    loading: false
+    loading: false,
+    counter:0
   }
 
 
@@ -134,6 +135,48 @@ addClick = (event, typeOfKey) => {
   console.log(this.state);
 }
 
+secretFillIn = () => {
+  if(this.state.counter === 0){
+    this.setState({
+      ...this.state,
+      title: 'Steel Ball Run',
+      description: 'A collaboration between me and my older brother, way low on paint and it shows on the edges!',
+      date: '07/07/2020',
+      size_type: '48x60',
+      methodList: [],
+      colorList: [],
+      toolList: [],
+      method: 'Dirty Pour',
+      color: 'Pearl',
+      brand: 'Golden Md',
+      tool: 'Pallet Knife',
+      counter: 1
+    })
+  } else if (this.state.counter === 1){
+    this.setState({
+      ...this.state,
+      method: 'Puddle Pour',
+      color: 'Ivory Black',
+      brand: 'Golden Hf',
+      counter: 2
+    })
+  } else if (this.state.counter === 2){
+    this.setState({
+      ...this.state,
+      color: 'Iridescent Gold',
+      brand: 'Golden Hf',
+      counter: 3
+    })
+  } else if (this.state.counter === 3){
+    this.setState({
+      ...this.state,
+      color: 'Oxide Purple',
+      brand: 'Golden Md',
+      counter: 4
+    })
+  }
+}
+
   render() {
     return (
       <div className='addPage'>
@@ -141,12 +184,12 @@ addClick = (event, typeOfKey) => {
           <Container className='addForm'>
             <Row>
               <Col>
-              <AddForm state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history} upload={this.upload}/>
+              <AddForm secretFillIn= {this.secretFillIn} state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history} upload={this.upload}/>
               </Col>
             </Row>
             <Row>
               <Col>
-                <Method  state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
+                <Method secretFillIn={this.secretFillIn} state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>
               </Col>
               <Col>
                 <Color state={this.state} addClick={this.addClick} handleChange={this.handleChange}/>

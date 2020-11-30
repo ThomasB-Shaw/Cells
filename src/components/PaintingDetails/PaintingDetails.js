@@ -115,8 +115,11 @@ class PaintingDetails extends Component {
             </Col>
             <Col></Col>
             <Col>
-            {/* this.props.store.paintingDetails[0].user_id === this.props.store.user.id ? */}
-            <Button onClick={this.editClick}>Edit Painting</Button>
+              {this.props.store.paintingDetails[0].user_id === this.props.store.user.id ?
+              <Button onClick={this.editClick}>Edit Painting</Button>
+              :
+              <p></p>
+              }
             </Col>
           </Row>
         </div>

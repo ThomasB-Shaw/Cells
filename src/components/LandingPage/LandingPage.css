@@ -9,8 +9,20 @@
     border-radius: 0;
 }
 
-img {
+.galleryImage {
+  height: 600px;
   max-width: 100%;
+  transition: transform .2s;
+}
+
+img {
+  height: 600px;
+  max-width: 100%;
+  transition: transform .2s;
+}
+
+.galleryImage:hover{
+  transform: scale(1.5);
 }
 
 .homeGallery{

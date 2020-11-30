@@ -10,8 +10,8 @@
 
 .nav {
   margin: 0 0 30px;
-  background-color: #29268C;
-  background-image: url(https://shuswapculture.ca/wp-content/uploads/2019/08/Fluid-Art.jpg);
+  background-color: #222222;
+  /* background-image: url(https://shuswapculture.ca/wp-content/uploads/2019/08/Fluid-Art.jpg); */
   background-position: center;
   overflow: hidden;
 }
@@ -19,7 +19,7 @@
 .nav-link {
   float: right;
   color: #f2f2f2;
-  background-color: #29268C;
+  background-color: #222222;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -34,7 +34,7 @@
 } 
 
  .nav-link:hover {
-  background-color: #403BD9;
+  background-color: #555555;
 }
 
 .nav-right {
