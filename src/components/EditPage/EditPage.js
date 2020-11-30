@@ -44,7 +44,7 @@ class EditPage extends Component {
         ...this.state,
         [typeOfKey]: event.target.value
     })
-    console.log(this.state)
+    console.log(this.state);
   }
 
   updatePainting = () => {

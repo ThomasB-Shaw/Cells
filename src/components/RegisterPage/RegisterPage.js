@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
+import './RegisterPage.css';
 
 class RegisterPage extends Component {
   state = {
@@ -13,20 +14,8 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='registerPageBackground'>
         <RegisterForm />
-
-        <center>
-          <button
-            type="button"
-            className="btn btn_asLink"
-            onClick={() => {
-              this.props.history.push('/login');
-            }}
-          >
-            Login
-          </button>
-        </center>
       </div>
     );
   }

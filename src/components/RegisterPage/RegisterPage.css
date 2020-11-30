@@ -1,4 +1,3 @@
-
 .formPanel {
     background-color: #4d4d4d;
     text-align: center;
@@ -7,7 +6,7 @@
     border-radius: 5px;
 }
 
-.loginPageBackground{
+.registerPageBackground{
     text-align: center;
     background-image: url(https://i.pinimg.com/originals/35/bd/42/35bd4257e2cd65ec2bffe93f37384f5b.jpg);
     background-size: cover;

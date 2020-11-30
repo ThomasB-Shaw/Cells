@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {Button, Container, Form, FormGroup, Label, Input} from 'reactstrap';
@@ -20,6 +21,7 @@ class LoginForm extends Component {
           password: this.state.password,
         },
       });
+      this.props.history.push('/home');
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
@@ -66,10 +68,11 @@ class LoginForm extends Component {
                 />
               </Label>
             </div>
+            
             <div>
               <Button
-                onClick={this.login}
-                color="success"
+              color='success'
+              onClick={this.login}
               >
                 Login
               </Button>
@@ -94,4 +97,4 @@ class LoginForm extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(LoginForm);
+export default withRouter(connect(mapStoreToProps)(LoginForm));

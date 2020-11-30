@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 class RegisterForm extends Component {
   state = {
@@ -28,43 +30,56 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <form className="formPanel" onSubmit={this.registerUser}>
-        <h2>Register User</h2>
+      <Form className="formPanel" onSubmit={this.registerUser}>
+      <FormGroup> 
+        <h2>Register</h2>
         {this.props.store.errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {this.props.store.errors.registrationMessage}
           </h3>
         )}
-        <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              required
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
+          <div>
+            <Label htmlFor="username">
+              Username:
+              <Input
+                type="text"
+                name="username"
+                value={this.state.username}
+                required
+                onChange={this.handleInputChangeFor('username')}
+              />
+            </Label>
         </div>
         <div>
-          <label htmlFor="password">
+          <Label htmlFor="password">
             Password:
-            <input
+            <Input
               type="password"
               name="password"
               value={this.state.password}
               required
               onChange={this.handleInputChangeFor('password')}
             />
-          </label>
+          </Label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <Button color="success" onClick={this.registerUser}>Register</Button>
         </div>
-      </form>
+      </FormGroup>
+      <center>
+        <h5>Already have an account?</h5>
+        <Button
+          color="link"
+          onClick={() => {
+            this.props.history.push('/login');
+          }}
+        >
+          Login
+        </Button>
+      </center>
+    </Form>
     );
   }
 }
 
-export default connect(mapStoreToProps)(RegisterForm);
+export default withRouter(connect(mapStoreToProps)(RegisterForm));
