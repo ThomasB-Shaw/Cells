@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import PaintingGallery from '../PaintingGallery/PaintingGallery';
-import {Jumbotron, Container, Row, Col, Button} from 'reactstrap';
+import {Jumbotron, Container} from 'reactstrap';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
-
 
 class LandingPage extends Component {
   state = {
@@ -27,13 +26,12 @@ class LandingPage extends Component {
 
   render() {
     return (
-    <>
-      <Jumbotron className="homeJumbotron">
-
-      </Jumbotron>
+      <>
+        <Jumbotron className="homeJumbotron">
+        </Jumbotron>
         <div className="homeGallery">
           <Container>
-          <h2>{this.state.heading}</h2>
+            <h2>{this.state.heading}</h2>
               <div className="imgFluid">
                 {this.props.store.paintings.map((painting) => {
                   return <>
@@ -42,7 +40,7 @@ class LandingPage extends Component {
                 })}
               </div>
           </Container>
-          </div>
+        </div>
       </>
     );
   }

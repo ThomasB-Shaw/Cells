@@ -4,30 +4,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import {Button} from 'reactstrap';
 
 class Method extends Component {
-  state = {
-    method: '',
-  }
-
-  handleChange = (event, typeOfKey) => {
-    console.log('There was a change!');
-    this.setState({
-        ...this.state,
-        method: event.target.value
-    })
-    console.log(this.state);
-}
-
-// addClick = (event, typeOfKey) => {
-//   // this.props.dispatch({ type:"ADD_PAINTING_COMPONENT", payload: this.state });
-  
-//   console.log('There was a add!');
-//     this.props.setState({
-//         ...this.props.state,
-//         methodList: [...this.state.methodList, this.state.method]
-//     })
-//     console.log(this.state);
-// }
-
 
   render() {
     return (

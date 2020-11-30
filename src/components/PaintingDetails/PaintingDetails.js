@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 import EditMethod from '../EditComponents/EditMethod';
 import EditColor from '../EditComponents/EditColor';
 import EditTool from '../EditComponents/EditTool';
-import {Col, Row, Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import {Col, Row, Button, Container } from 'reactstrap';
 import './PaintingDetails.css'
 
 class PaintingDetails extends Component {
