@@ -9,7 +9,7 @@ import EditMethod from '../EditComponents/EditMethod';
 import EditColor from '../EditComponents/EditColor';
 import EditTool from '../EditComponents/EditTool';
 import './EditPage.css';
-import {Col, Row, Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import {Col, Row, Button, Container } from 'reactstrap';
 import swal from 'sweetalert';
 import ReactS3 from 'react-s3';
 

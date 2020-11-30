@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import {Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Button} from 'reactstrap';
 
 class EditTool extends Component {
 
