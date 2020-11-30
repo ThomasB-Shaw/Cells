@@ -11,8 +11,12 @@ img {
     text-align: left;
 }
 
+.addNewPainting{
+    margin-left: 100%;
+}
+
 .paintingComponent {
-    background-color: coral;
+    background-color: #121212;
     border-radius: 5px;
     text-indent: 4px;
 }
@@ -45,11 +49,15 @@ img {
     text-align: left;
 }
 
-#componentBtn{
-    text-align: right;
+.componentBtn{
+    margin-left: 71%;
+    margin-bottom: 5%;
 }
 
 .spinner{
     text-align: center;
     padding-bottom: 5px;
+}
+ul{
+    list-style: disc;
 }

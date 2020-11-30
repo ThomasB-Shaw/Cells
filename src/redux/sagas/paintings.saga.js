@@ -15,7 +15,8 @@ function* fetchPaintings() {
 function* addPainting(action) {
   console.log(action.payload);
   try {
-    yield axios.post('/api/paintings', action.payload)
+    yield axios.post('/api/paintings', action.payload);
+    yield action.history.push('/user');
   } catch (error) {
     console.log('error in post', error);
   }
@@ -32,6 +33,7 @@ function* deletePainting(action) {
 function* updatePainting(action) {
   try {
     yield axios.put(`/api/paintings/${action.id}`, action.payload);
+    yield action.history.push('/user');
   } catch (error) {
     console.log('ERROR in axios delete painting', error);
   }

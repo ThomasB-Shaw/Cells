@@ -34,9 +34,11 @@ class Method extends Component {
       <div className='paintingComponent'>
         <label htmlFor='method'>
           Method:
+          <br/>
           <input type='text' placeholder='Method'  onChange={(event) => this.props.handleChange(event, 'method')}/>
         </label>
-        <Button size='sm' value={this.props.method} onClick={(value) => this.props.addClick(value, 'method')}>Add</Button>
+        <br/>
+        <Button size='sm' value={this.props.method} className='componentBtn' onClick={(value) => this.props.addClick(value, 'method')}>Add</Button>
         <ul>
           {this.props.state.methodList.map((method) => {
             return <li key={method}> {method} </li>

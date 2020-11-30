@@ -19,9 +19,6 @@ const config = {
     secretAccessKey: `${process.env.REACT_APP_SECRET_ACCESS_KEY}`,
 }
 
-// accessKeyId: `${process.env.ACCESS_KEY_ID}`,
-//     secretAccessKey: `${process.env.SECRET_ACCESS_KEY}`,
-
 class AddPage extends Component {
   state = {
     title: '',
@@ -75,7 +72,7 @@ class AddPage extends Component {
     if(this.state.title === '' || this.state.description === '' || this.state.img_url === '' || this.state.date === '' || this.state.size_type === '' || this.state.methodList === [] || this.state.colorList === [] || this.state.toolList === []){
       swal("Warning!", "Please ensure that you have all required fields filled in!", "warning");
     } else {
-      this.props.dispatch({ type:"ADD_PAINTING", payload: this.state });
+      this.props.dispatch({ type:"ADD_PAINTING", payload: this.state, history: this.props.history });
       swal("Success!", "Painting was added, Returning to your page", "success");
       this.setState ({
         title: '',
@@ -92,7 +89,6 @@ class AddPage extends Component {
         tool: '',
         loading: false
       })
-    this.props.history.push('/user');
     }
   }
 

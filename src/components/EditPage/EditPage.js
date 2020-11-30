@@ -11,6 +11,15 @@ import EditTool from '../EditComponents/EditTool';
 import './EditPage.css';
 import {Col, Row, Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import swal from 'sweetalert';
+import ReactS3 from 'react-s3';
+
+const config = {
+  bucketName: 'solocells-images',
+  dirName: 'photos', /* optional */
+  region: 'us-east-2',
+  accessKeyId: `${process.env.REACT_APP_ACCESS_KEY_ID}`,
+  secretAccessKey: `${process.env.REACT_APP_SECRET_ACCESS_KEY}`,
+}
 
 class EditPage extends Component {
   state = {
@@ -25,7 +34,8 @@ class EditPage extends Component {
     method: '',
     color: '',
     brand: '',
-    tool: ''
+    tool: '',
+    loading: false
   }
 
   componentDidMount = () => {
@@ -48,7 +58,27 @@ class EditPage extends Component {
   }
 
   updatePainting = () => {
-    this.props.dispatch({ type:"EDIT_PAINTING", payload: this.state, id: this.props.store.paintingDetails[0].painting_id })
+    if(this.state.title === '' || this.state.description === '' || this.state.img_url === '' || this.state.date === '' || this.state.size_type === '' || this.state.methodList === [] || this.state.colorList === [] || this.state.toolList === []){
+      swal("Warning!", "Please ensure that you have all required fields filled in!", "warning");
+    } else {
+      this.props.dispatch({ type:"EDIT_PAINTING", payload: this.state, id: this.props.store.paintingDetails[0].painting_id, history: this.props.history });
+      swal("Success!", "Painting was updated, Returning to your page", "success");
+      this.setState ({
+        title: '',
+        description: '',
+        img_url: '',
+        date: '',
+        size_type: '',
+        methodList: [],
+        colorList: [],
+        toolList: [],
+        method: '',
+        color: '',
+        brand: '',
+        tool: '',
+        loading: false
+      })
+    }
   }
 
   deletePainting = () => {
@@ -95,6 +125,27 @@ class EditPage extends Component {
     this.getComponents(); // Not sure why but needs to be dispatch x3 to work dynamically
   }
 
+  upload = (e) => {
+    console.log(e.target.files[0]);
+    this.setState({
+      ...this.state,
+      loading: true
+    })
+    ReactS3.uploadFile( e.target.files[0], config)
+    .then((data) => {
+      console.log(data);
+      console.log(data.location)
+      this.setState({
+        ...this.state,
+        img_url: data.location,
+        loading: false
+      });
+    }).catch((err) => {
+      console.log('Error in upload', err);
+      alert(err);
+    })
+  }
+
   render() {
     return (
       <div className='editPage'>
@@ -103,7 +154,7 @@ class EditPage extends Component {
           <AddForm handleChange={this.handleChange} state={this.state}/>
           <Row>
             <Col className='addComponent' >
-              <Method state={this.state} addClick={this.addClick} handleChange={this.handleChange} />
+              <Method state={this.state} handleChange={this.handleChange} history={this.props.history} upload={this.upload} addClick={this.addClick} />
               <ul>
                 {this.props.store.componentDetails.methodsReducer.map((method) => {
                   return < EditMethod state={this.state} method={method} getComponents={this.getComponents}/>

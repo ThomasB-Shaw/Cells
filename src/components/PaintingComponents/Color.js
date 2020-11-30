@@ -36,10 +36,10 @@ addClick = () => {
           <input type='text' placeholder='Color' onChange={(event) => this.props.handleChange(event, 'color')}/>
         </label>
         <br/>
-        <Button size='sm' value={this.props.tool} id='componentBtn' onClick={(value) => this.props.addClick(value, 'color')}>Add</Button>
+        <Button size='sm' value={this.props.tool} className='componentBtn' onClick={(value) => this.props.addClick(value, 'color')}>Add</Button>
         <ul>
           {this.props.state.colorList.map((color) => {
-            return <li key={color[1]}> Brand: {color[0]} Color: {color[1]} </li>
+            return <li key={color[1]}>{color[0]} : {color[1]} </li>
           })}
         </ul>
       </div>
