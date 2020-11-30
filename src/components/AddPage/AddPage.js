@@ -95,24 +95,43 @@ class AddPage extends Component {
 // Checks what kind of add has been clicked then adds it to the proper Array to later be posted
 addClick = (event, typeOfKey) => {
   if(typeOfKey === 'method'){
-  console.log('There was a add!', typeOfKey);
-    this.setState({
-        ...this.state,
-        methodList: [...this.state.methodList, this.state.method]
-    })} else if (typeOfKey === 'color') {
+    if(this.state.method === '') {
+      swal("No Method Input", "Please fill out the method input field and try again", "warning");
+    } else {
       console.log('There was a add!', typeOfKey);
-        this.setState({
-            ...this.state,
-            colorList: [...this.state.colorList, [this.state.brand, this.state.color]]
-        })} else if (typeOfKey === 'tool') {
-          console.log('There was a add!', typeOfKey);
-            this.setState({
-                ...this.state,
-                toolList: [...this.state.toolList, this.state.tool]
-            })} else { 
-              console.log('Error type of update unknown')
-            }
-    console.log(this.state);
+      this.setState({
+        ...this.state,
+        methodList: [...this.state.methodList, this.state.method],
+        method: ''
+      })
+    }
+  } else if (typeOfKey === 'color') {
+    if(this.state.brand === '' || this.state.color === '') {
+      swal("Proper Input Not Detected", "Please fill out the brand and the color input field and try again", "warning");
+    } else {
+      console.log('There was a add!', typeOfKey);
+      this.setState({
+        ...this.state,
+        colorList: [...this.state.colorList, [this.state.brand, this.state.color]],
+        brand: '',
+        color: ''
+      })
+      }
+  } else if (typeOfKey === 'tool') {
+    if(this.state.tool === '') {
+      swal("No Tool Input", "Please fill out the tool input field and try again", "warning");
+    } else {
+      console.log('There was a add!', typeOfKey);
+      this.setState({
+        ...this.state,
+        toolList: [...this.state.toolList, this.state.tool],
+        tool: ''
+      })
+    }
+  } else { 
+    console.log('Error type of update unknown')
+    }
+  console.log(this.state);
 }
 
   render() {

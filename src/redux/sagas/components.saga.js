@@ -42,7 +42,8 @@ function* fetchTools(action) {
 function* addComponent(action) {
     console.log(action.payload);
     try {
-      yield axios.post(`/api/components`, action.payload)
+      yield axios.post(`/api/components`, action.payload);
+      yield action.getComponents();
     } catch (error) {
       console.log('error in post components', error);
     }

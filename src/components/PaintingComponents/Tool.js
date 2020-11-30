@@ -28,7 +28,7 @@ addClick = () => {
         <label htmlFor='method'>
           Tool:
           <br/>
-          <input type='text' placeholder='Tool' onChange={(event) => this.props.handleChange(event, 'tool')}/>
+          <input type='text' placeholder='Tool' value={this.props.state.tool} onChange={(event) => this.props.handleChange(event, 'tool')}/>
         </label>
         <br/>
         <Button size='sm' value={this.props.tool} className='componentBtn' onClick={(value) => this.props.addClick(value, 'tool')}>Add</Button>

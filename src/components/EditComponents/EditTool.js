@@ -7,8 +7,7 @@ class EditTool extends Component {
 
     deleteComponent = (id) => {
       console.log('Component ID', id)
-      this.props.dispatch({type: 'DELETE_COMPONENT', payload: id});
-      this.props.getComponents();
+      this.props.dispatch({type: 'DELETE_COMPONENT', payload: id, getComponents: this.props.getComponents});
     }
 
   render() {
@@ -17,7 +16,7 @@ class EditTool extends Component {
         <li key={this.props.tool.component_id}>
             {this.props.tool.name}
             { !this.props.state.view ?
-              <Button color="danger" size="sm" onClick={() => this.deleteComponent(this.props.color.component_id)}>DELETE</Button>
+              <Button color="danger" size="sm" onClick={() => this.deleteComponent(this.props.tool.component_id)}>DELETE</Button>
               :
               <p></p>
               }

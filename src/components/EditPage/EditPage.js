@@ -107,22 +107,42 @@ class EditPage extends Component {
 
   addClick = (event, typeOfKey) => {
     if(typeOfKey === 'method'){
-    console.log('There was a add!', typeOfKey);
-      this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id ,'method', this.state.method]});
-      this.props.dispatch({type: 'FETCH_METHODS', id: this.props.store.paintingDetails[0].painting_id});
-      this.getComponents();
+      if(this.state.method === '') {
+        swal("No Method Input", "Please fill out the method input field and try again", "warning");
+      } else {
+        console.log('There was a add!', typeOfKey);
+        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id ,'method', this.state.method], getComponents: this.getComponents});
+        this.setState({
+          ...this.state,
+          method: ''
+        })
+      }
     } else if (typeOfKey === 'color') {
-      console.log('There was a add!', typeOfKey);
-      this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id ,'color', this.state.brand, this.state.color]});
-      this.props.dispatch({type: 'FETCH_COLORS', id: this.props.store.paintingDetails[0].painting_id});
+      if(this.state.brand === '' || this.state.color === '') {
+        swal("Proper Input Not Detected", "Please fill out the brand and the color input field and try again", "warning");
+      } else{
+        console.log('There was a add!', typeOfKey);
+        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id ,'color', this.state.brand, this.state.color], getComponents: this.getComponents});
+        this.setState({
+          ...this.state,
+          brand: '',
+          color: ''
+        })
+      }
     } else if (typeOfKey === 'tool') {
-      console.log('There was a add!', typeOfKey);
-      this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id , 'tool' , this.state.tool]});
-      this.props.dispatch({type: 'FETCH_TOOLS', id: this.props.store.paintingDetails[0].painting_id});
+        if(this.state.tool === '') {
+          swal("No Tool Input", "Please fill out the tool input field and try again", "warning");
+        } else {
+        console.log('There was a add!', typeOfKey);
+        this.props.dispatch({type: 'ADD_COMPONENT', payload: [this.props.store.paintingDetails[0].painting_id , 'tool' , this.state.tool], getComponents: this.getComponents});
+        this.setState({
+          ...this.state,
+          tool: ''
+        })
+      }
     } else { 
       console.log('Error type of component unknown')
     }
-    this.getComponents(); // Not sure why but needs to be dispatch x3 to work dynamically
   }
 
   upload = (e) => {
