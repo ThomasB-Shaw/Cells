@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {Button, Container, Form, FormGroup, Label, Input} from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends Component {
   state = {
