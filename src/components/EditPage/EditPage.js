@@ -13,6 +13,7 @@ import {Col, Row, Button, Container } from 'reactstrap';
 import swal from 'sweetalert';
 import ReactS3 from 'react-s3';
 
+// config set up for ReactS3 to send to AWS S3 bucket
 const config = {
   bucketName: 'solocells-images',
   dirName: 'photos', /* optional */
@@ -22,6 +23,7 @@ const config = {
 }
 
 class EditPage extends Component {
+  //State populates with data from getPaintingReducer
   state = {
     title: this.props.store.paintingDetails[0].title,
     description: this.props.store.paintingDetails[0].description,
@@ -38,16 +40,19 @@ class EditPage extends Component {
     loading: false
   }
 
+  // On page load get all components for selected painting
   componentDidMount = () => {
     this.getComponents();
   }
 
+  // complied all Fetch dispatches for components for a specific painting
   getComponents = () => {
     this.props.dispatch({type: 'FETCH_METHODS', id: this.props.store.paintingDetails[0].painting_id});
     this.props.dispatch({type: 'FETCH_COLORS', id: this.props.store.paintingDetails[0].painting_id});
     this.props.dispatch({type: 'FETCH_TOOLS', id: this.props.store.paintingDetails[0].painting_id});
   }
 
+  // Activated on change from add form or painting component, holds state and changes based on key passed
   handleChange = (event, typeOfKey) => {
     console.log('There was a change!');
     this.setState({
@@ -57,6 +62,7 @@ class EditPage extends Component {
     console.log(this.state);
   }
 
+  // Upon click of save changes tests if all inputs are properly filled out, if so dispatches changes through saga to the DB
   updatePainting = () => {
     if(this.state.title === '' || this.state.description === '' || this.state.img_url === '' || this.state.date === '' || this.state.size_type === '' || this.state.methodList === [] || this.state.colorList === [] || this.state.toolList === []){
       swal("Warning!", "Please ensure that you have all required fields filled in!", "warning");
@@ -81,8 +87,8 @@ class EditPage extends Component {
     }
   }
 
+  // Upon Click of Delete Painting btn will use Sweet Alerts to confirm, dispatch a delete via painting id and return user to their gallery with confirmation via swal
   deletePainting = () => {
-    // console.log('DELETE ITEM', item);
     swal("Are you sure you want to delete this painting?", "", "warning", {
       buttons: {
         cancel: "Cancel",
@@ -104,6 +110,7 @@ class EditPage extends Component {
       });
     }
 
+  // Adds component based a add btn clicked below component field, test key and then adds component via post dispatch if it passes input check
   addClick = (event, typeOfKey) => {
     if(typeOfKey === 'method'){
       if(this.state.method === '') {
@@ -144,6 +151,7 @@ class EditPage extends Component {
     }
   }
 
+  // upload feature from ReactS3 on successful response sets the public url to the state to be stored
   upload = (e) => {
     console.log(e.target.files[0]);
     this.setState({

@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET ROUTES
+// Selects all components for the DB
 router.get('/', (req, res) => {
   let queryText = ` SELECT * FROM "component"; `;
   pool.query(queryText)
@@ -14,6 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
+//Gets all Methods for a painting based on painting ID
 router.get('/methods/:id', (req, res) => {
   const id = req.params.id
   let queryText = ` 
@@ -29,6 +31,7 @@ router.get('/methods/:id', (req, res) => {
     });
 });
 
+//Gets all Colors for a painting based on painting ID
 router.get('/colors/:id', (req, res) => {
   const id = req.params.id
   let queryText = ` 
@@ -44,6 +47,7 @@ router.get('/colors/:id', (req, res) => {
     });
 });
 
+//Gets all Tools for a painting based on painting ID
 router.get('/tools/:id', (req, res) => {
   const id = req.params.id
   let queryText = ` 
@@ -102,8 +106,8 @@ router.post('/', (req, res) => {
 );
 
 // DELETE ROUTES
+// Deletes both the many to many relation for a component to a painting, and the component based on the components id
 router.delete('/:id', (req, res) => {
-  // DELETE route code here
   console.log('req.body params', req.params.id);
   let id = req.params.id;
   const deleteRelationQuery = `DELETE FROM "painting_component" WHERE "component_id" =$1;`;

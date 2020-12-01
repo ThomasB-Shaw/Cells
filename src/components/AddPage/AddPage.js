@@ -10,7 +10,7 @@ import './AddPage.css';
 import swal from 'sweetalert';
 import ReactS3 from 'react-s3';
 
-
+// Config set to allow use of AWS S3 with ReactS3
 const config = {
     bucketName: 'solocells-images',
     dirName: 'photos', /* optional */
@@ -37,7 +37,7 @@ class AddPage extends Component {
     counter:0
   }
 
-
+  // Activated on change from add form or painting component, holds state and changes based on key passed
   handleChange = (event, typeOfKey) => {
     console.log('There was a change!');
     this.setState({
@@ -47,6 +47,7 @@ class AddPage extends Component {
     console.log(this.state)
   }
 
+  // upload feature from ReactS3 on successful response sets the public url to the state to be stored
   upload = (e) => {
     console.log(e.target.files[0]);
     this.setState({
@@ -135,6 +136,7 @@ addClick = (event, typeOfKey) => {
   console.log(this.state);
 }
 
+// Fill in for presentation
 secretFillIn = () => {
   if(this.state.counter === 0){
     this.setState({

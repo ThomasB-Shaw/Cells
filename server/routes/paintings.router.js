@@ -3,7 +3,7 @@ const { string } = require('prop-types');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-
+// Gets 9 random paintings for the DB from all users
 router.get('/', (req, res) => {
     let queryText = ` SELECT * FROM "painting" ORDER BY RANDOM() LIMIT 9; `;
     pool.query(queryText)
@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
       });
   });
 
+// Deletes painting based on id passed from paintingSaga
 router.delete('/:id', (req, res) => {
-  // DELETE route code here
   console.log('req.body params', req.params.id);
   let id = req.params.id;
   const queryText = `DELETE FROM "painting" WHERE "painting"."id" = $1;`;
@@ -28,6 +28,7 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+// Updated route located in edit page, updates all fields withing the base painting table
 router.put('/:id', (req, res) => {
   console.log('req.body params', req.params.id);
   console.log('REQ.BODY', req.body)
@@ -43,6 +44,10 @@ router.put('/:id', (req, res) => {
   });
 });
 
+// Post Route, first adds painting to painting DB, 
+// then fires of a post for each component in its respected list
+// makes a many to many relation based on newly created painting id and newly created component id
+// Repeats this for all components | Methods | Colors | Tools, until respected lists are looped through
 router.post('/', (req, res) => {
   let userID = req.user.id;
   const queryText = `INSERT INTO "painting" ("user_id", "title", "description", "image_url", "date", "size_type")

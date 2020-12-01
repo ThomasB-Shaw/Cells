@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// worker Saga: will be fired on "FETCH_USER" actions
+// Gets all of a painting details on click of it in either the home gallery of a users gallery
 function* fetchPaintingDetails(action) {
   try {
     const paintingDetailsResponse = yield axios.get(`/api/paintingDetails/${action.payload}`);

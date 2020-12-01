@@ -4,23 +4,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import {Col, Row, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 
 class AddForm extends Component {
-  state = {
-    title: '',
-    description: '',
-    img_url: '',
-    date: '',
-    size_type: ''
-  }
-
-  handleChange = (event, typeOfKey) => {
-    console.log('There was a change!');
-    this.setState({
-        ...this.state,
-        [typeOfKey]: event.target.value
-    })
-    console.log(this.state)
-  }
-
   render() {
     return (
       <div className='addForm'>

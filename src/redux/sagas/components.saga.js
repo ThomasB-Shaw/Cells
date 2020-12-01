@@ -1,7 +1,7 @@
-
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// Gets all components
 function* fetchComponents() {
   try {
     const paintingsResponse = yield axios.get('/api/components');
@@ -11,6 +11,7 @@ function* fetchComponents() {
     }
 }
 
+// Gets all components marked method for a given painting based on the paintings ID
 function* fetchMethods(action) {
   console.log(action.payload)
   try {
@@ -21,6 +22,7 @@ function* fetchMethods(action) {
     }
 }
 
+// Gets all components marked Colors for a given painting based on the paintings ID
 function* fetchColors(action) {
   try {
     const colorsResponse = yield axios.get(`/api/components/colors/${action.id}`);
@@ -30,6 +32,7 @@ function* fetchColors(action) {
     }
 }
 
+// Gets all components marked Tools for a given painting based on the paintings ID
 function* fetchTools(action) {
   try {
     const toolsResponse = yield axios.get(`/api/components/tools/${action.id}`);
@@ -39,6 +42,7 @@ function* fetchTools(action) {
     }
 }
 
+// Posts new component to database using paintings ID and key passed from client
 function* addComponent(action) {
     console.log(action.payload);
     try {
@@ -49,6 +53,7 @@ function* addComponent(action) {
     }
   }
 
+// delete component based on ID of component based on component local state id in EditPainting
 function* deleteComponent(action) {
   try {
     yield axios.delete(`/api/components/${action.payload}`);

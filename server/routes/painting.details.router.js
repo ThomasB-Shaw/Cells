@@ -5,7 +5,8 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-//GET ROUTE Grabs all data from genres table and movies table from database
+//GET ROUTE 
+//Gets all data associated with a selected painting based on its id
 router.get('/:ID', (req, res) => {
     let paintingID = req.params.ID;
     console.log('paintingID',paintingID)

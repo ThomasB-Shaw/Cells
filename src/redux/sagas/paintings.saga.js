@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// worker Saga: will be fired on "FETCH_USER" actions
+// Activated on load of Home Gallery, gets 9 images from the DB
 function* fetchPaintings() {
   try {
     const paintingsResponse = yield axios.get('/api/paintings');
@@ -22,6 +22,7 @@ function* addPainting(action) {
   }
 }
 
+// deletesPainting on delete painting btn in editPainting
 function* deletePainting(action) {
   try {
     yield axios.delete(`/api/paintings/${action.payload}`);
@@ -31,6 +32,7 @@ function* deletePainting(action) {
   }
 }
 
+// dispatched from edit Painting page
 function* updatePainting(action) {
   try {
     yield axios.put(`/api/paintings/${action.id}`, action.payload);

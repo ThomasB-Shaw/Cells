@@ -5,10 +5,13 @@ import PaintingGallery from '../PaintingGallery/PaintingGallery';
 import './UserPage.css'
 
 class UserPage extends Component {
+
+  // Gets all paintings associated with the users ID #
   componentDidMount = () => {
     this.getMyPaintings();
   }
 
+  // Dispatches to Saga to get all paintings associated with the users ID #
   getMyPaintings = () => {
     this.props.dispatch({type: "FETCH_MY_PAINTINGS"});
   }

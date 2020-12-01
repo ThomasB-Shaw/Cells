@@ -9,15 +9,17 @@ import {Col, Row, Button, Container } from 'reactstrap';
 import './PaintingDetails.css'
 
 class PaintingDetails extends Component {
-
+  //Used to conditionally Render
   state ={
     view: 'details'
   }
 
+  // On page load get all components for selected painting
   componentDidMount = () => {
     this.getComponents();
   }
 
+  // complied all Fetch dispatches for components for a specific painting
   getComponents = () => {
     this.props.dispatch({type: 'FETCH_METHODS', id: this.props.store.paintingDetails[0].painting_id});
     this.props.dispatch({type: 'FETCH_COLORS', id: this.props.store.paintingDetails[0].painting_id});
@@ -29,6 +31,7 @@ class PaintingDetails extends Component {
       this.props.history.push('/home');
   }
 
+  // Sends user to the edit painting page via paintings id
   editClick = () => {
     this.props.history.push('/edit')
   }
@@ -127,7 +130,5 @@ class PaintingDetails extends Component {
     );
   }
 }
-
-// return <li key={component.id}>{component.brand} {component.name}</li>
 
 export default withRouter(connect(mapStoreToProps)(PaintingDetails));

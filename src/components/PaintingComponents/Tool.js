@@ -4,7 +4,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import {Button} from 'reactstrap';
 
 class Method extends Component {
-
   render() {
     return (
       <div className='paintingComponent'>
