@@ -12,7 +12,7 @@ class PaintingGallery extends Component {
   render() {
     return (
       <div className="GalleryPainting">
-        <button onClick={this.paintingClick}>
+        <button className='imageBtn' onClick={this.paintingClick}>
             <img className='galleryImage' alt={this.props.painting.description} src={this.props.painting.image_url}/>
         </button>
       </div>

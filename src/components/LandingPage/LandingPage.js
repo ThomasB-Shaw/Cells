@@ -10,7 +10,7 @@ import './LandingPage.css';
 
 class LandingPage extends Component {
   state = {
-    heading: 'Home Gallery!',
+    heading: 'Home Gallery',
   };
 
   // Fetches 9 Random Paintings to populate Home page, on refresh or load

@@ -11,7 +11,8 @@ import './PaintingDetails.css'
 class PaintingDetails extends Component {
   //Used to conditionally Render
   state ={
-    view: 'details'
+    view: 'details',
+    date: Date(this.props.store.paintingDetails[0].date)
   }
 
   // On page load get all components for selected painting
@@ -36,6 +37,14 @@ class PaintingDetails extends Component {
     this.props.history.push('/edit')
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...this.state,
+      date: new Date(this.props.store.paintingDetails[0].date).toLocaleString()
+    };
+  }
+
   render() {
     return (
       <Container>
@@ -53,7 +62,7 @@ class PaintingDetails extends Component {
                 <h4 className='userName'>{this.props.store.paintingDetails[0].username}</h4>
                 }
                 {this.props.store.paintingDetails[0] &&
-                <h4 className='dateDetail'>{this.props.store.paintingDetails[0].date}</h4>
+                <h4 className='dateDetail'>{this.state.date}</h4>
                 }
                 {this.props.store.paintingDetails[0] &&
                 <h4 className='userDetail'>{this.props.store.paintingDetails[0].size_type}</h4>

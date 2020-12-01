@@ -143,7 +143,6 @@ secretFillIn = () => {
       ...this.state,
       title: 'Steel Ball Run',
       description: 'A collaboration between me and my older brother, way low on paint and it shows on the edges!',
-      date: '07/07/2020',
       size_type: '48x60',
       methodList: [],
       colorList: [],
