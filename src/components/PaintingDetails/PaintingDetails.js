@@ -18,6 +18,7 @@ class PaintingDetails extends Component {
   // On page load get all components for selected painting
   componentDidMount = () => {
     this.getComponents();
+    this.makeDate();
   }
 
   // complied all Fetch dispatches for components for a specific painting
@@ -37,13 +38,23 @@ class PaintingDetails extends Component {
     this.props.history.push('/edit')
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...this.state,
-      date: new Date(this.props.store.paintingDetails[0].date).toLocaleString()
-    };
+  makeDate = () => {
+    let year = new Date(this.props.store.paintingDetails[0].date).getFullYear();
+    let month = new Date(this.props.store.paintingDetails[0].date).getMonth();
+    let day = new Date(this.props.store.paintingDetails[0].date).getDate();
+
+    this.setState({
+      date: `${month}/${day}/${year}`
+    })
   }
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     ...this.state,
+  //     date: new Date(this.props.store.paintingDetails[0].date).getFullYear()
+  //   };
+  // }
 
   render() {
     return (
