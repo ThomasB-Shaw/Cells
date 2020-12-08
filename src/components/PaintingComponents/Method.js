@@ -7,7 +7,7 @@ class Method extends Component {
   render() {
     return (
       <div className='paintingComponent'>
-        <label onClick={this.props.secretFillIn} htmlFor='method'>
+        <label htmlFor='method'>
           Method:
           <br/>
           <input type='text' placeholder='Method' value={this.props.state.method} onChange={(event) => this.props.handleChange(event, 'method')}/>

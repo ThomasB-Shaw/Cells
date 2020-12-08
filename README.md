@@ -1,121 +1,61 @@
+# Cells
 
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## Description
+_Duration: 2-Week Sprint_
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+Cells is created for fluid artists who would like help honing their craft and find consistences in their work.  By providing a web space for fluid artist to congregate and store their work using the ASW S3 Cloud to review at a later time or for other users to view and try and replicate.  Cells provides these tools an artist can narrow down what components will result in what style in a painting, with this knowledge on their next attempt they can dial in and continually improve for the next painting
 
-## Use the Template for This Repository (Don't Clone) 
+## Usage
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
+1. After landing at the home page, you will be able to browse nine random images on the home gallery 
+2. On click of a painting on a gallery you will be able to see that paintings Title, Date Made, Dimensions, Description, the methods, colors and tools the painting is comprised of.
+3. Navigating back to the home page or choosing the ```log in/Register``` option off of the top nav bar
+4. Upon click of ```log in``` you will be brought to the log in page, if you have an account you may sign in, otherwise registering is an option
+5. Registering will require the user to provide a unique user name and password.  After which they will be prompted back to the log in page to sign in.  After Successfully signing in the user will be dropped back at the home page
+6. New options will be in the nav bar once signed in (```Add Painting```, ```My Account```)
+7. Upon Click of ```Add Painting``` you will brought to the add painting page.  Here you will be able to fill in the Title, Date Made, Dimensions, Description.  You will need to upload a file from your device to be sent to the AWS cloud.  You will need to add a method, color and tool per used.  When everything has been updated hitting ```Save Painting``` will post it to the database.  You will be navigated to your user page upon successful save.
+8. Upon landing at your account page, you will see all of your current paintings you have uploaded.  Clicking on these will bring you to the edit page
+9.  The edit page will allow you to revert any inputs and allow you to delete / add more methods, colors, and tools
+10. If signed in and viewing your own painting a ```DELETE PAINTING``` upon click you will be prompted if you are sure.  If proceeded, you will be dropped on your account page with the chosen painting delete
 
+### Prerequisites
 
-## Prerequisites
-
-Before you get started, make sure you have the following software installed on your computer:
+Link to software that is required to install the app.
 
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+- [PostgreSQL](https://www.postgresql.org/download/)
 
-## Create database and table
+## Installation
 
-Create a new database called `prime_app` and create a `user` table:
+1. Get to main project directory in command line, assuming node is installed, and type in `npm install` to install required dependencies.
+2. Install postgreSQL at [this](https://www.postgresql.org/download/) link.
+3. Install postgreSQL GUI like [Postico](https://eggerapps.at/postico/).
+4. Run commands from database.sql file in Postico to create table, in `cells` database.
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+## Built With
+- _Node.js_
+- _Express.js_
+- _React_ 
+- _Redux_
+- _Redux-Sagas_
+- _postgreSQL_
+- _Bootstrap_
+- _Sweet Alerts_
+- _Amazon Web Services S3_
 
-## Development Setup Instructions
+## Support
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+If you have any questions, feel free to email me at tbrookshaw13@gmail.com
 
-## Debugging
+## Acknowledgments
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+* Shoutout to all of Prime staff for being so supportive and being such great teachers.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+---
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+## Where I want to go from here
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+- [ ] Studio View, which will allow a user to make a wall of paintings in an arrangement they would make with draggable JS tools, this could then be shown off at their profile.
+- [ ] Refresh Page,  Use the get request through params, to add user forgiveness if refresh every occurs
+- [ ] Filter Page, to use different type of filters to check the DB for paintings that fullfil those tags

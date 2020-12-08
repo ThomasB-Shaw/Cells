@@ -136,48 +136,6 @@ addClick = (event, typeOfKey) => {
   console.log(this.state);
 }
 
-// Fill in for presentation
-secretFillIn = () => {
-  if(this.state.counter === 0){
-    this.setState({
-      ...this.state,
-      title: 'Steel Ball Run',
-      description: 'A collaboration between me and my older brother, way low on paint and it shows on the edges!',
-      size_type: '48x60',
-      methodList: [],
-      colorList: [],
-      toolList: [],
-      method: 'Dirty Pour',
-      color: 'Pearl',
-      brand: 'Golden Md',
-      tool: 'Pallet Knife',
-      counter: 1
-    })
-  } else if (this.state.counter === 1){
-    this.setState({
-      ...this.state,
-      method: 'Puddle Pour',
-      color: 'Ivory Black',
-      brand: 'Golden Hf',
-      counter: 2
-    })
-  } else if (this.state.counter === 2){
-    this.setState({
-      ...this.state,
-      color: 'Iridescent Gold',
-      brand: 'Golden Hf',
-      counter: 3
-    })
-  } else if (this.state.counter === 3){
-    this.setState({
-      ...this.state,
-      color: 'Oxide Purple',
-      brand: 'Golden Md',
-      counter: 4
-    })
-  }
-}
-
   render() {
     return (
       <div className='addPage'>
@@ -185,7 +143,7 @@ secretFillIn = () => {
           <Container className='addForm'>
             <Row>
               <Col>
-              <AddForm secretFillIn= {this.secretFillIn} state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history} upload={this.upload}/>
+              <AddForm state={this.state} handleChange={this.handleChange} submitClick={this.submitClick} history={this.props.history} upload={this.upload}/>
               </Col>
             </Row>
             <Row>

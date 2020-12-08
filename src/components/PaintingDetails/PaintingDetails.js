@@ -44,6 +44,7 @@ class PaintingDetails extends Component {
     let day = new Date(this.props.store.paintingDetails[0].date).getDate();
 
     this.setState({
+      ...this.state,
       date: `${month}/${day}/${year}`
     })
   }
