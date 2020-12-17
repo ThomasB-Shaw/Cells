@@ -6,7 +6,7 @@ import EditMethod from '../EditComponents/EditMethod';
 import EditColor from '../EditComponents/EditColor';
 import EditTool from '../EditComponents/EditTool';
 import {Col, Row, Button, Container } from 'reactstrap';
-import './PaintingDetails.css'
+import './PaintingDetails.css';
 
 class PaintingDetails extends Component {
   //Used to conditionally Render
